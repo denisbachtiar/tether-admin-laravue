@@ -1,0 +1,26 @@
+// import Dashboard from './components/Dashboard.vue';
+// import Users from './components/Users.vue'
+
+const Dashboard = () => import(
+    './components/Dashboard.vue');
+
+const Users = () => import(
+    './components/Users.vue');
+
+export const routes = [{
+    path: '/',
+    component: Dashboard,
+    name: 'Dashboard',
+    meta: {
+        breadCrumb: 'Dashboard'
+    },
+},
+{
+    path: '/users',
+    component: Users,
+    name: 'Users',
+    meta: {
+        breadCrumb: 'Users'
+    },
+}
+];
