@@ -67,4 +67,32 @@ class FilterUserData {
         ];
         return $data;
     }
+
+    public static function allGraphDays() {
+        $y =[];
+        for ($x = 6; $x >= 0; $x--) {
+            $all = DB::table('users')
+            ->whereDate('createdAt', Carbon::now()->subDays($x))
+            ->count();
+  
+            $active = DB::table('users')
+            ->whereDate('createdAt', Carbon::now()->subDays($x))
+            ->where('updatedAt', '>', Carbon::now()->subDays(30))
+            ->count();
+  
+            $iddle = DB::table('users')
+            ->whereDate('createdAt', Carbon::now()->subDays($x))
+            ->whereBetween('updatedAt', [Carbon::now()->subDays(90), Carbon::now()->subDays(30)])
+            ->count();
+  
+            $nonactive = DB::table('users')
+            ->whereDate('createdAt', Carbon::now()->subDays($x))
+            ->where('updatedAt','<', Carbon::now()->subDays(90))
+            ->count();
+    
+            $y[] = array_merge(array($all), array($active), array($iddle), array($nonactive));
+          }
+  
+        return $y;
+      }
 }

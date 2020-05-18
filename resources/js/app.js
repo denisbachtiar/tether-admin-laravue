@@ -14,6 +14,7 @@ window.Vue = require("vue");
 Vue.use(VueRouter);
 Vue.use(DataTable);
 Vue.use(VueApexCharts)
+Vue.use(require('vue-moment'));
 
 Vue.component('apexchart', VueApexCharts)
 

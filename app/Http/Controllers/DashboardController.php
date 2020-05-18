@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\UsersReport;
 use App\Helpers\FilterUserData;
+use App\Helpers\FilterGender;
+use App\Helpers\FilterAge;
 use DB;
 
 class DashboardController extends Controller
@@ -22,7 +24,17 @@ class DashboardController extends Controller
 
     public function graph()
     {
-        return response()->json(UsersReport::yearData());
+        return response()->json(FilterGender::graphMonth());
+    }
+
+    public function graphAgePie()
+    {
+        return response()->json(FilterAge::percentData());
+    }
+
+    public function graphBox()
+    {
+        return response()->json(FilterUserData::allGraphDays());
     }
 
     /**

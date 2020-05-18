@@ -15,9 +15,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-chart-bg pt-4">
-                            <div id="chart-bg-users-1" style="height: 60px"></div>
-                        </div>
+                        <!--AllGraphBox-->
+                        <AllGraphBox></AllGraphBox>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -35,9 +34,8 @@
                                 </div>
                             </div>                            
                         </div>
-                        <div class="card-chart-bg pt-4">
-                            <div id="chart-bg-users-2" style="height: 60px"></div>
-                        </div>
+                        <!--ActiveGraphBox-->
+                        <ActiveGraphBox></ActiveGraphBox>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -55,9 +53,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-chart-bg pt-4">
-                            <div id="chart-bg-users-3" style="height: 60px"></div>
-                        </div>
+                        <!--IddleGraphBox-->
+                        <IddleGraphBox></IddleGraphBox>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -75,16 +72,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-chart-bg pt-4">
-                            <div id="chart-bg-users-4" style="height: 60px"></div>
-                        </div>
+                        <!--NonActiveGraphBox-->
+                        <NonActiveGraphBox></NonActiveGraphBox>
                     </div>
                 </div>                
             </div> 
 </template>
 
 <script>
+import AllGraphBox from './AllGraphBox'
+import ActiveGraphBox from './ActiveGraphBox'
+import IddleGraphBox from './IddleGraphBox'
+import NonActiveGraphBox from './NonActiveGraphBox'
 export default {
+    components: {
+        AllGraphBox: AllGraphBox,
+        ActiveGraphBox: ActiveGraphBox,
+        IddleGraphBox: IddleGraphBox,
+        NonActiveGraphBox: NonActiveGraphBox
+    },
     data: function() {
         return {
             all: null,

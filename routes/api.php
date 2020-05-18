@@ -18,4 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard/graphbox', 'DashboardController@graphBox')->name('dashboard.graphbox');
+Route::get('/dashboard/graphmonth', 'DashboardController@graph')->name('dashboard.graph');
+Route::get('/dashboard/graphagepie', 'DashboardController@graphAgePie')->name('dashboard.graph.age.pie');
 Route::get('/datauser', 'UsersController@show')->name('usersdata');

@@ -2,7 +2,7 @@
 // import Users from './components/Users.vue'
 
 const Dashboard = () => import(
-    './components/Dashboard.vue');
+    './pages/user/Dashboard.vue');
 
 const Users = () => import(
     './components/Users.vue');
