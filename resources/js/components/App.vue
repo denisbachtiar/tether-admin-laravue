@@ -11,8 +11,8 @@
     </div>
 </template>
 <script>
-import Sidebar from "./layouts/Sidebar";
-import Navbar from "./layouts/Navbar";
+import Sidebar from "./layouts/Sidebar"
+import Navbar from "./layouts/Navbar"
 export default {
     components: {
         Sidebar: Sidebar,

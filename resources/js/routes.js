@@ -1,10 +1,10 @@
 // import Dashboard from './components/Dashboard.vue';
 // import Users from './components/Users.vue'
 
-const Dashboard = () => import(
-    './pages/user/Dashboard.vue');
+const Dashboard = () => import(/* webpackChunkName: "dashboard-component" */
+    './pages/user/dashboard/Index.vue');
 
-const Users = () => import(
+const Users = () => import(/* webpackChunkName: "users-component" */
     './components/Users.vue');
 
 export const routes = [{

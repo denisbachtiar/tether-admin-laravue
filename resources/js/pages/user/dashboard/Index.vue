@@ -19,7 +19,7 @@
                             <h2>Users</h2>
                         </div>
                         <div class="body">
-                            <ChartAgePie></ChartAgePie>
+                           <ChartAgePie></ChartAgePie> 
                         </div>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
 
 <script>
 import axios from "axios"
-import Breadcrumb from '../../components/layouts/Breadcrumbs'
-import BoxStat from '../../components/user/dashboard/BoxStat'
-import ChartLineMonth from '../../components/user/dashboard/ChartLineMonth'
-import ChartAgePie from '../../components/user/dashboard/ChartAgePie'
+import Breadcrumb from '../../../components/layouts/Breadcrumbs'
+import BoxStat from './components/BoxStat'
+import ChartLineMonth from './components/ChartLineMonth'
+import ChartAgePie from './components/ChartAgePie'
 export default {
     name: 'Dashboard',
     components: {

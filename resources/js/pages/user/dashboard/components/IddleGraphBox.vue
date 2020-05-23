@@ -18,6 +18,7 @@ export default {
     },
     mounted () {
       // to init the graph call:
+    this.$nextTick(function() {
       const options = {
           padding: {
             bottom: -10,
@@ -25,13 +26,13 @@ export default {
             right: -1
         },
         data: {
-            url: '/api/dashboard/graphbox',
+            url: '/api/dashboard/iddlegraphbox',
             'mimeType': 'json',
             keys: {
                 value: ['0']
             },
             names: {
-                0: 'All Users'
+                0: 'Iddle Users'
             },
             type: 'area',
         },
@@ -70,10 +71,11 @@ export default {
             }
         },
         color: {
-            pattern: ['#467fcf']
+            pattern: ['#5eba00']
         }
       }
       this.handler.$emit('init', options)
+    })
     }
 }
 </script>

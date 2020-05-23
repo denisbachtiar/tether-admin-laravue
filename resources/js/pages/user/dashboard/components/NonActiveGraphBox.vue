@@ -18,6 +18,7 @@ export default {
     },
     mounted () {
       // to init the graph call:
+    this.$nextTick(function() {
       const options = {
           padding: {
             bottom: -10,
@@ -25,13 +26,13 @@ export default {
             right: -1
         },
         data: {
-            url: '/api/dashboard/graphbox',
+            url: '/api/dashboard/nonactivegraphbox',
             'mimeType': 'json',
             keys: {
-                value: ['3']
+                value: ['0']
             },
             names: {
-                3: 'Nonactive Users'
+                0: 'Nonactive Users'
             },
             type: 'area',
         },
@@ -74,6 +75,7 @@ export default {
         }
       }
       this.handler.$emit('init', options)
+    })
     }
 }
 </script>

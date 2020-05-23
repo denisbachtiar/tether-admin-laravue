@@ -18,6 +18,7 @@ export default {
     },
     mounted () {
       // to init the graph call:
+    this.$nextTick(function() {
       const options = {
           padding: {
             bottom: -10,
@@ -25,13 +26,13 @@ export default {
             right: -1
         },
         data: {
-            url: '/api/dashboard/graphbox',
+            url: '/api/dashboard/activegraphbox',
             'mimeType': 'json',
             keys: {
-                value: ['2']
+                value: ['0']
             },
             names: {
-                2: 'Iddle Users'
+                0: 'Active Users'
             },
             type: 'area',
         },
@@ -70,10 +71,11 @@ export default {
             }
         },
         color: {
-            pattern: ['#5eba00']
+            pattern: ['#e74c3c']
         }
       }
       this.handler.$emit('init', options)
+    })
     }
 }
 </script>

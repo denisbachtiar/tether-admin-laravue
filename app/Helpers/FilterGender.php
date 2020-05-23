@@ -104,8 +104,8 @@ class FilterGender {
             ->whereMonth('createdAt', Carbon::now()->subMonth($x)->format('m'))
             ->where('gender', '')
             ->count();
-
-            $y[] = array_merge(array($male),array($female),array($undefined));
+            $date = Carbon::now()->subMonth($x)->format('Y M');
+            $y[] = array_merge(array($male),array($female),array($undefined),array($date));
           }
         return $y;
     }

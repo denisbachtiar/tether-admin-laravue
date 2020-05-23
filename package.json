@@ -28,7 +28,7 @@
         "apexcharts": "^3.19.0",
         "c3": "^0.7.15",
         "laravel-vue-datatable": "^0.5.7",
-        "vue-apexcharts": "^1.5.3",
+        "nprogress": "^0.2.0",
         "vue-c3": "^1.2.11",
         "vue-loading-overlay": "^3.2.0",
         "vue-moment": "^4.1.0",

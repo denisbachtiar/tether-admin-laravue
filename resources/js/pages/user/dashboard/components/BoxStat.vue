@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <!--AllGraphBox-->
-                        <AllGraphBox></AllGraphBox>
+                       <!--<AllGraphBox></AllGraphBox>-->
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -35,7 +35,7 @@
                             </div>                            
                         </div>
                         <!--ActiveGraphBox-->
-                        <ActiveGraphBox></ActiveGraphBox>
+                       <!--<ActiveGraphBox></ActiveGraphBox>-->
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <!--IddleGraphBox-->
-                        <IddleGraphBox></IddleGraphBox>
+                       <!--<IddleGraphBox></IddleGraphBox>-->
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -73,23 +73,23 @@
                             </div>
                         </div>
                         <!--NonActiveGraphBox-->
-                        <NonActiveGraphBox></NonActiveGraphBox>
+                        <!--<NonActiveGraphBox></NonActiveGraphBox>-->
                     </div>
                 </div>                
             </div> 
 </template>
 
 <script>
-import AllGraphBox from './AllGraphBox'
-import ActiveGraphBox from './ActiveGraphBox'
-import IddleGraphBox from './IddleGraphBox'
-import NonActiveGraphBox from './NonActiveGraphBox'
+// import AllGraphBox from './AllGraphBox'
+// import ActiveGraphBox from './ActiveGraphBox'
+// import IddleGraphBox from './IddleGraphBox'
+// import NonActiveGraphBox from './NonActiveGraphBox'
 export default {
     components: {
-        AllGraphBox: AllGraphBox,
-        ActiveGraphBox: ActiveGraphBox,
-        IddleGraphBox: IddleGraphBox,
-        NonActiveGraphBox: NonActiveGraphBox
+        // AllGraphBox: AllGraphBox,
+        // ActiveGraphBox: ActiveGraphBox,
+        // IddleGraphBox: IddleGraphBox,
+        // NonActiveGraphBox: NonActiveGraphBox
     },
     data: function() {
         return {

@@ -7,16 +7,14 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import DataTable from "laravel-vue-datatable";
 import { routes } from "./routes";
-import VueApexCharts from 'vue-apexcharts'
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 require("./bootstrap");
 
 window.Vue = require("vue");
 Vue.use(VueRouter);
 Vue.use(DataTable);
-Vue.use(VueApexCharts)
 Vue.use(require('vue-moment'));
-
-Vue.component('apexchart', VueApexCharts)
 
 import App from "./components/App";
 
@@ -24,6 +22,14 @@ const router = new VueRouter({
     mode: "history",
     routes
 });
+
+router.beforeEach((to, from, next) => {
+    NProgress.start()
+    next()
+})
+router.afterEach(() => {
+    NProgress.done(true)
+})
 
 /**
  * The following block of code may be used to automatically register your

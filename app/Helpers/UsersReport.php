@@ -18,4 +18,59 @@ class UsersReport {
           }
         return $y;
     }
+
+    public static function allGraphDays() {
+      $y =[];
+      for ($x = 6; $x >= 0; $x--) {
+          $all = DB::table('users')
+          ->whereDate('createdAt', Carbon::now()->subDays($x))
+          ->count();
+  
+          $y[] = array_merge(array($all));
+        }
+
+      return $y;
+    }
+
+    public static function iddleGraphDays() {
+      $y =[];
+      for ($x = 6; $x >= 0; $x--) {
+          $iddle = DB::table('users')
+          ->whereDate('createdAt', Carbon::now()->subDays($x))
+          ->whereBetween('updatedAt', [Carbon::now()->subDays(90), Carbon::now()->subDays(30)])
+          ->count();
+  
+          $y[] = array_merge(array($iddle));
+        }
+
+      return $y;
+    }
+
+    public static function activeGraphDays() {
+      $y =[];
+      for ($x = 6; $x >= 0; $x--) {
+          $active = DB::table('users')
+          ->whereDate('createdAt', Carbon::now()->subDays($x))
+          ->where('updatedAt', '>', Carbon::now()->subDays(30))
+          ->count();
+  
+          $y[] = array_merge(array($active));
+        }
+
+      return $y;
+    }
+
+    public static function nonactiveGraphDays() {
+      $y =[];
+      for ($x = 6; $x >= 0; $x--) {
+          $nonactive = DB::table('users')
+          ->whereDate('createdAt', Carbon::now()->subDays($x))
+          ->where('updatedAt','<', Carbon::now()->subDays(90))
+          ->count();
+  
+          $y[] = array_merge(array($nonactive));
+        }
+
+      return $y;
+    }
 }
