@@ -22,7 +22,7 @@ export default {
     },
     mounted () {
         axios
-            .get("http://localhost:8000/api/dashboard/graphmonth")
+            .get("/api/dashboard/graphmonth")
             .then(response => {
                 this.dataOption = response.data
                 this.dateOption = this.dataOption.map( (value) => {

@@ -5,7 +5,7 @@ const Dashboard = () => import(/* webpackChunkName: "dashboard-component" */
     './pages/user/dashboard/Index.vue');
 
 const Users = () => import(/* webpackChunkName: "users-component" */
-    './components/Users.vue');
+    './pages/user/usersData/Index.vue');
 
 export const routes = [{
     path: '/',
@@ -20,7 +20,7 @@ export const routes = [{
     component: Users,
     name: 'Users',
     meta: {
-        breadCrumb: 'Users'
+        breadCrumb: 'Users Data'
     },
 }
 ];

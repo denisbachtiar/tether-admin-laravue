@@ -31,7 +31,7 @@
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu">
                         <li class="header">Main</li>
-                        <li class="">
+                        <li v-link-active="active">
                             <router-link :to="{ name: 'Dashboard' }">
                                 <i class="icon-speedometer"></i
                                 ><span>Dashboard</span>
@@ -66,3 +66,18 @@
         </div>
     </div>
 </template>
+
+<style lang="scss">
+    .metismenu {
+        a {
+            &.router-link-exact-active {
+                color: #4586df;
+                i {
+                    background-color: #4888e0;
+                    color: white;
+                }
+            }
+        }
+
+    }
+</style>

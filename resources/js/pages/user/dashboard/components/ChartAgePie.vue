@@ -2,7 +2,6 @@
     <div>
         <span class="loading-chart-pie">Loading...</span>
         <vue-c3 :handler="handler"></vue-c3>
-        <!--<span>{{ new Date() | moment("subtract", "1 month") | moment("MMM YYYY")}}</span>-->
     </div>
 </template>
 
@@ -22,7 +21,7 @@ export default {
     },
     mounted () {
       axios
-            .get("http://localhost:8000/api/dashboard/graphagepie")
+            .get("/api/dashboard/graphagepie")
             .then(response => {
                 this.piedata = response.data
                 this.pie = {

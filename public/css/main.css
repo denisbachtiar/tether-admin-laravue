@@ -12874,5 +12874,21 @@ ul.gallery li a {
   border-color: #FFFFFF;
 }
 
+#dataTableData {
+  display: block;
+  width: 100% !important;
+  overflow-x: auto;
+}
+
+#dataTableData_wrapper .row:nth-child(2) {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#dataTableData_wrapper .row:nth-child(2) .col-sm-12 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 
 /*# sourceMappingURL=main.css.map*/

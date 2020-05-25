@@ -60,3 +60,28 @@
 @import 'skins/indigo';
 @import 'skins/red';
 @import 'skins/light';
+
+// #dataTableData_wrapper {
+//     .row:nth-child(2) {
+//         display: block;
+//         width: 100%;
+//         overflow-x: auto;
+//     }
+// }
+
+#dataTableData {
+    display: block;
+        width: 100% !important;
+        overflow-x: auto;
+}
+
+#dataTableData_wrapper {
+    .row:nth-child(2) {
+        margin-left: 0;
+        margin-right: 0;
+        .col-sm-12 {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}

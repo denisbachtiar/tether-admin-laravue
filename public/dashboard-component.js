@@ -232,7 +232,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost:8000/api/dashboard").then(function (response) {
+    axios.get("/api/dashboard").then(function (response) {
       // console.log(response.data)
       _this.all = response.data.all;
       _this.active = response.data.active;
@@ -268,7 +268,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -285,7 +284,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost:8000/api/dashboard/graphagepie").then(function (response) {
+    axios.get("/api/dashboard/graphagepie").then(function (response) {
       _this.piedata = response.data;
       _this.pie = {
         data: {
@@ -372,7 +371,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("http://localhost:8000/api/dashboard/graphmonth").then(function (response) {
+    axios.get("/api/dashboard/graphmonth").then(function (response) {
       _this.dataOption = response.data;
       _this.dateOption = _this.dataOption.map(function (value) {
         return value[3];

@@ -102,7 +102,7 @@ export default {
     },
     mounted() {
         axios
-            .get("http://localhost:8000/api/dashboard")
+            .get("/api/dashboard")
             .then(response => {
                 // console.log(response.data)
                 this.all = response.data.all;

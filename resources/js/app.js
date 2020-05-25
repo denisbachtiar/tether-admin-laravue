@@ -9,12 +9,14 @@ import DataTable from "laravel-vue-datatable";
 import { routes } from "./routes";
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import Fragment from 'vue-fragment'
 require("./bootstrap");
 
 window.Vue = require("vue");
 Vue.use(VueRouter);
 Vue.use(DataTable);
 Vue.use(require('vue-moment'));
+Vue.use(Fragment.Plugin)
 
 import App from "./components/App";
 
