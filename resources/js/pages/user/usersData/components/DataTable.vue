@@ -3,7 +3,6 @@
         <data-table
             :columns="columns"
             url="/api/datauser"
-            theme="light"
             orderBy="user_id"
             @loading="isLoading = true"
             @finishedLoading="isLoading = false"
@@ -42,7 +41,7 @@ export default {
                 },
                 {
                     label: "Phone",
-                    name: "phone"
+                    name: "phone",
                 },
                 {
                     label: "Birthdate",

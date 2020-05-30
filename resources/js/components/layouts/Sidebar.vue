@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <fragment>
         <div id="left-sidebar" class="sidebar">
             <div class="navbar-brand">
                 <a href="index.html"
@@ -31,14 +31,14 @@
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu">
                         <li class="header">Main</li>
-                        <li v-link-active="active">
-                            <router-link :to="{ name: 'Dashboard' }">
+                        <li>
+                            <router-link :to="{ name: 'UserDashboard' }">
                                 <i class="icon-speedometer"></i
                                 ><span>Dashboard</span>
                             </router-link>
                         </li>
                         <li class="">
-                            <router-link :to="{ name: 'Users' }">
+                            <router-link :to="{ name: 'UserUsers' }">
                                 <i class="icon-users"></i><span>Users</span>
                             </router-link>
                         </li>
@@ -64,7 +64,7 @@
                 </nav>
             </div>
         </div>
-    </div>
+    </fragment>
 </template>
 
 <style lang="scss">

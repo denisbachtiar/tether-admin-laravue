@@ -119,7 +119,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -331,7 +330,6 @@ var render = function() {
         attrs: {
           columns: _vm.columns,
           url: "/api/datauser",
-          theme: "light",
           orderBy: "user_id"
         },
         on: {

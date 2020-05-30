@@ -4,18 +4,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import Vue from "vue";
-import VueRouter from "vue-router";
-import DataTable from "laravel-vue-datatable";
-import { routes } from "./routes";
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
+import VueRouter from "vue-router"
+import DataTable from "laravel-vue-datatable"
+import { routes } from "./routes"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import Fragment from 'vue-fragment'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 require("./bootstrap");
 
-window.Vue = require("vue");
-Vue.use(VueRouter);
-Vue.use(DataTable);
-Vue.use(require('vue-moment'));
+window.Vue = require("vue")
+Vue.use(VueRouter)
+Vue.use(DataTable)
+Vue.use(require('vue-moment'))
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.use(Fragment.Plugin)
 
 import App from "./components/App";
@@ -54,8 +57,6 @@ router.afterEach(() => {
 
 const app = new Vue({
     el: "#app",
-    components: {
-        App
-    },
+    render: h => h(App),
     router
 });
