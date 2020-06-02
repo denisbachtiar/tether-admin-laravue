@@ -6,7 +6,7 @@
         </div>
 </template>
 <script>
-import Sidebar from "./layouts/Sidebar"
+import Sidebar from "./layouts/sidebar/UserSidebar"
 import Navbar from "./layouts/Navbar"
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 export default {

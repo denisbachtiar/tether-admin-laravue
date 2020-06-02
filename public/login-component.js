@@ -34,11 +34,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      showDismissibleAlert: false
     };
   },
   methods: {
@@ -56,6 +76,7 @@ __webpack_require__.r(__webpack_exports__);
 
       })["catch"](function (err) {
         console.log(err);
+        _this.showDismissibleAlert = true;
       });
     }
   }
@@ -75,7 +96,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".auth-main {\n  background: linear-gradient(225deg, #4586df 0%, #3864a1 100%) !important;\n}\n.form-auth-small a {\n  color: white !important;\n}\n.btn.btn-submit {\n  background: linear-gradient(225deg, #4586df 0%, #3864a1 100%);\n}", ""]);
+exports.push([module.i, ".auth-main {\n  background: linear-gradient(225deg, #4586df 0%, #3864a1 100%) !important;\n}\n.form-auth-small a {\n  color: white !important;\n}\n.btn.btn-submit {\n  background: linear-gradient(225deg, #4586df 0%, #3864a1 100%);\n}\n.form-control::-webkit-input-placeholder {\n  color: #dadada;\n}\n.form-control::-moz-placeholder {\n  color: #dadada;\n}\n.form-control:-ms-input-placeholder {\n  color: #dadada;\n}\n.form-control::-ms-input-placeholder {\n  color: #dadada;\n}\n.form-control::placeholder {\n  color: #dadada;\n}\n.particles_js #particles-js {\n  z-index: 2;\n}", ""]);
 
 // exports
 
@@ -127,99 +148,154 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "auth-main particles_js" }, [
-    _c("div", { staticClass: "auth_div vivify popIn" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "body" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c(
-              "label",
-              {
-                staticClass: "control-label sr-only",
-                attrs: { for: "signin-email" }
-              },
-              [_vm._v("Email")]
-            ),
+  return _c(
+    "div",
+    { staticClass: "auth-main particles_js" },
+    [
+      _c("vue-particles", {
+        attrs: {
+          color: "#dedede",
+          particleOpacity: 0.7,
+          particlesNumber: 80,
+          shapeType: "circle",
+          particleSize: 4,
+          linesColor: "#dedede",
+          linesWidth: 1,
+          lineLinked: true,
+          lineOpacity: 0.4,
+          linesDistance: 150,
+          moveSpeed: 2,
+          hoverEffect: true,
+          hoverMode: "grab",
+          clickEffect: false
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "auth_div vivify popIn" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "body" }, [
+            _vm._m(0),
             _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "email",
-                name: "email",
-                placeholder: "admin@gmail.com"
-              },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
             _c(
-              "label",
+              "form",
               {
-                staticClass: "control-label sr-only",
-                attrs: { for: "signin-password" }
-              },
-              [_vm._v("Password")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "password",
-                name: "password",
-                placeholder: "Password"
-              },
-              domProps: { value: _vm.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                staticClass: "form-auth-small m-t-20",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
                   }
-                  _vm.password = $event.target.value
                 }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success btn-block btn-submit",
-              attrs: { type: "button" },
-              on: { click: _vm.login }
-            },
-            [_vm._v("LOGIN")]
-          )
+              },
+              [
+                _c(
+                  "b-alert",
+                  {
+                    attrs: { variant: "danger", dismissible: "" },
+                    model: {
+                      value: _vm.showDismissibleAlert,
+                      callback: function($$v) {
+                        _vm.showDismissibleAlert = $$v
+                      },
+                      expression: "showDismissibleAlert"
+                    }
+                  },
+                  [_vm._v("Data yang diinputkan salah\n              ")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "control-label sr-only",
+                      attrs: { for: "signin-email" }
+                    },
+                    [_vm._v("Email")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.email,
+                        expression: "email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      name: "email",
+                      placeholder: "Email",
+                      required: ""
+                    },
+                    domProps: { value: _vm.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.email = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "control-label sr-only",
+                      attrs: { for: "signin-password" }
+                    },
+                    [_vm._v("Password")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.password,
+                        expression: "password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      name: "password",
+                      placeholder: "Password",
+                      required: ""
+                    },
+                    domProps: { value: _vm.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.password = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-block btn-submit",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("LOGIN")]
+                )
+              ],
+              1
+            )
+          ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -237,7 +313,12 @@ var staticRenderFns = [
         [
           _c("img", {
             staticClass: "d-inline-block align-top mr-2",
-            attrs: { src: "", width: "30", height: "30", alt: "" }
+            attrs: {
+              src: __webpack_require__(/*! ../../../../public/img/theter-icon.png */ "./public/img/theter-icon.png"),
+              width: "30",
+              height: "30",
+              alt: ""
+            }
           }),
           _vm._v("tether.")
         ]
@@ -255,15 +336,14 @@ render._withStripped = true
 /*!********************************************!*\
   !*** ./resources/js/pages/login/Index.vue ***!
   \********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Index_vue_vue_type_template_id_2a71a5b3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=2a71a5b3& */ "./resources/js/pages/login/Index.vue?vue&type=template&id=2a71a5b3&");
 /* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/pages/login/Index.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _Index_vue_vue_type_style_index_0_lang_scss_scope_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Index.vue?vue&type=style&index=0&lang=scss&scope=true& */ "./resources/js/pages/login/Index.vue?vue&type=style&index=0&lang=scss&scope=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Index_vue_vue_type_style_index_0_lang_scss_scope_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Index.vue?vue&type=style&index=0&lang=scss&scope=true& */ "./resources/js/pages/login/Index.vue?vue&type=style&index=0&lang=scss&scope=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -295,7 +375,7 @@ component.options.__file = "resources/js/pages/login/Index.vue"
 /*!*********************************************************************!*\
   !*** ./resources/js/pages/login/Index.vue?vue&type=script&lang=js& ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

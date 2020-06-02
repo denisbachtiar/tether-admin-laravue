@@ -196,7 +196,8 @@
 
 		&:hover,
 		&.active{
-			color: $white;
+			// color: $white;
+			color: #6290d0 !important;
 			.notification-dot{
 				top: 2px;
 			}

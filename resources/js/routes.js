@@ -1,4 +1,5 @@
 import UserLayout from './components/UserLayout'
+import ActivityLayout from './components/ActivityLayout'
 
 export const routes = [
     {
@@ -25,6 +26,21 @@ export const routes = [
                 },
             },
         ],
+    },
+    {
+        path: '/activity', component: ActivityLayout,
+        children: [
+            {
+                path: 'dashboard',
+                component: () => import(/* webpackChunkName: "activity-dashboard-component" */
+                    './pages/activity/dashboard/Index'),
+                name: 'ActivityDashboard',
+                meta: {
+                    auth: true,
+                    breadCrumb: 'Dashboard Activity'
+                },
+            }
+        ]
     },
     {
         path: '',

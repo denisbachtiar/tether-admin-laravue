@@ -10,6 +10,7 @@ import { routes } from "./routes"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Fragment from 'vue-fragment'
+import VueParticles from 'vue-particles'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 require("./bootstrap");
 
@@ -19,6 +20,7 @@ Vue.use(DataTable)
 Vue.use(require('vue-moment'))
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueParticles)
 Vue.use(Fragment.Plugin)
 
 import App from "./components/App";
@@ -32,9 +34,8 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     NProgress.start()
     const loggedIn = localStorage.getItem('token')
-    console.log(loggedIn)
     var metaauth = to.matched.some(record => record.meta.auth)
-    console.log(metaauth)
+
     if (metaauth && !loggedIn) {
         next('/')
         return

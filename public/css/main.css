@@ -2739,7 +2739,7 @@ html.fullscreen-bg #wrapper {
 
 .navbar-nav .icon-menu:hover,
 .navbar-nav .icon-menu.active {
-  color: #FFFFFF;
+  color: #6290d0 !important;
 }
 
 .navbar-nav .icon-menu:hover .notification-dot,

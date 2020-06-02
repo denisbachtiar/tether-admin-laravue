@@ -12,5 +12,7 @@
     "/vendors~dashboard-component.js": "/vendors~dashboard-component.js",
     "/vendors~dashboard-component.js.map": "/vendors~dashboard-component.js.map",
     "/vendors~users-component.js": "/vendors~users-component.js",
-    "/vendors~users-component.js.map": "/vendors~users-component.js.map"
+    "/vendors~users-component.js.map": "/vendors~users-component.js.map",
+    "/activity-dashboard-component.js": "/activity-dashboard-component.js",
+    "/activity-dashboard-component.js.map": "/activity-dashboard-component.js.map"
 }
