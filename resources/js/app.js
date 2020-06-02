@@ -22,6 +22,7 @@ Vue.use(IconsPlugin)
 Vue.use(Fragment.Plugin)
 
 import App from "./components/App";
+import store from "./store"
 
 const router = new VueRouter({
     mode: "history",
@@ -30,6 +31,18 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     NProgress.start()
+    const loggedIn = localStorage.getItem('token')
+    console.log(loggedIn)
+    var metaauth = to.matched.some(record => record.meta.auth)
+    console.log(metaauth)
+    if (metaauth && !loggedIn) {
+        next('/')
+        return
+    }
+    else if (metaauth == false && loggedIn != null) {
+        next('/user/dashboard')
+        return
+    }
     next()
 })
 router.afterEach(() => {
@@ -57,6 +70,7 @@ router.afterEach(() => {
 
 const app = new Vue({
     el: "#app",
+    router,
+    store,
     render: h => h(App),
-    router
 });

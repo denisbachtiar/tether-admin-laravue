@@ -10,6 +10,7 @@ export const routes = [
                     './pages/user/dashboard/Index'),
                 name: 'UserDashboard',
                 meta: {
+                    auth: true,
                     breadCrumb: 'Dashboard'
                 },
             },
@@ -19,6 +20,7 @@ export const routes = [
                     './pages/user/usersData/Index'),
                 name: 'UserUsers',
                 meta: {
+                    auth: true,
                     breadCrumb: 'Users Data'
                 },
             },
@@ -28,7 +30,10 @@ export const routes = [
         path: '',
         component: () => import(/* webpackChunkName: "login-component" */
             './pages/login/Index'),
-        name: 'Login'
+        name: 'Login',
+        meta: {
+            auth: false
+        }
     },
     {
         path: '*', redirect: '/'

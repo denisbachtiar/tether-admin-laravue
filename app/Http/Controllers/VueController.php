@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Hash;
+// use PayloadFactory;
+use JWTFactory;
 
 class VueController extends Controller
 {
@@ -17,6 +22,39 @@ class VueController extends Controller
         // $data = DB::table('users')->select('users.*')->get();
         // dd($data);
         return view('vue');
+    }
+
+    public function login(Request $request)
+    {
+        $email = 'admin@admin.com';
+        $password = 'qwerty123';
+
+        // $user = 1;
+
+        if($email == $request->email && $password == $request->password) {
+            $token = Hash::make($request->email);
+    
+            $response = [
+                // 'user' => $user,
+                'token' => $token
+            ];
+        
+            return response($response, 201);
+        }
+        else {
+            return response([
+                'message' => ['These credentials do not match our records.']
+            ], 404);
+        }
+    }
+
+    public function logout()
+    {
+        $this->guard()->logout();
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Logged out Successfully.'
+        ], 200);
     }
 
     /**

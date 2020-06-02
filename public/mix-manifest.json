@@ -5,12 +5,12 @@
     "/css/main.css.map": "/css/main.css.map",
     "/dashboard-component.js": "/dashboard-component.js",
     "/dashboard-component.js.map": "/dashboard-component.js.map",
+    "/login-component.js": "/login-component.js",
+    "/login-component.js.map": "/login-component.js.map",
     "/users-component.js": "/users-component.js",
     "/users-component.js.map": "/users-component.js.map",
     "/vendors~dashboard-component.js": "/vendors~dashboard-component.js",
     "/vendors~dashboard-component.js.map": "/vendors~dashboard-component.js.map",
     "/vendors~users-component.js": "/vendors~users-component.js",
-    "/vendors~users-component.js.map": "/vendors~users-component.js.map",
-    "/login-component.js": "/login-component.js",
-    "/login-component.js.map": "/login-component.js.map"
+    "/vendors~users-component.js.map": "/vendors~users-component.js.map"
 }

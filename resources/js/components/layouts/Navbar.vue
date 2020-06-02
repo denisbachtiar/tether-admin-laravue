@@ -33,17 +33,28 @@
                 <div class="progress-bar" id="myBar"></div>
             </div>
         </nav>
-        <b-modal id="modal-1">
+        <!-- LOGOUT MODAL -->
+        <b-modal id="modal-1" size="sm">
             <template v-slot:modal-title>
-            Using <code>$bvModal</code> Methods
+                <h5>Logout</h5>
             </template>
             <div class="d-block text-center">
-            <h3>Hello From This Modal!</h3>
+                <h6>Are you sure want to logout?</h6>
             </div>
             <template v-slot:modal-footer>
-                <b-button @click="$bvModal.hide('modal-1')">Cancel</b-button>
-                <router-link :to="{ name: 'Login' }" class="btn btn-danger" style="color: white !important">Logout</router-link>
+                <b-button @click="$bvModal.hide('modal-1')">No, Cancel</b-button>
+                <button type="button" class="btn btn-danger" v-on:click="logout">Yes, Logout</button>
             </template>
         </b-modal>
     </fragment>
 </template>
+
+<script>
+export default {
+    methods: {
+        logout () {
+            this.$store.dispatch('logout')
+        }
+    }
+}
+</script>
