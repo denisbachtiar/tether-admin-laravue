@@ -9,7 +9,7 @@
     {{-- <link rel="stylesheet" href="{{asset('theme/vendor/font-awesome/css/font-awesome.min.css')}}"> --}}
     {{-- <link rel="stylesheet" href="{{asset('theme/vendor/animate-css/vivify.min.css')}}"> --}}
 
-    <link rel="stylesheet" href="{{asset('theme/vendor/c3/c3.min.css')}}"/>
+    {{-- <link rel="stylesheet" href="{{asset('theme/vendor/c3/c3.min.css')}}"/> --}}
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
 </head>
 <body class="theme-cyan font-montserrat light_version">

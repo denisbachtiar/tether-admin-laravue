@@ -90,7 +90,10 @@ class FilterGender {
     }
 
     public static function graphMonth() {
-        $y =[];
+        $maleData = [];
+        $femaleData = [];
+        $undefinedData= [];
+        $dateData= [];
         for ($x = 6; $x >= 0; $x--) {
             $male = DB::table('users')
             ->whereMonth('createdAt', Carbon::now()->subMonth($x)->format('m'))
@@ -105,9 +108,13 @@ class FilterGender {
             ->where('gender', '')
             ->count();
             $date = Carbon::now()->subMonth($x)->format('Y M');
-            $y[] = array_merge(array($male),array($female),array($undefined),array($date));
+            array_push($maleData, $male);
+            array_push($femaleData, $female);
+            array_push($undefinedData, $undefined);
+            array_push($dateData, $date);
           }
-        return $y;
+          $t = array_merge(array($maleData), array($femaleData), array($undefinedData), array($dateData));
+        return $t;
     }
 
     public static function count() {

@@ -12,6 +12,7 @@ import 'nprogress/nprogress.css'
 import Fragment from 'vue-fragment'
 import VueParticles from 'vue-particles'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import SimpleLineIcons from 'vue-simple-line'
 require("./bootstrap");
 
 window.Vue = require("vue")
@@ -22,6 +23,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueParticles)
 Vue.use(Fragment.Plugin)
+Vue.component('simple-line-icons', SimpleLineIcons)
 
 import App from "./components/App";
 import store from "./store"

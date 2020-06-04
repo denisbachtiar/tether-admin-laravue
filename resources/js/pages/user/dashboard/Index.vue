@@ -16,17 +16,17 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Users</h2>
+                            <h2>Users Age</h2>
                         </div>
                         <div class="body">
-                           <ChartAgePie></ChartAgePie> 
+                           <ChartAgePie></ChartAgePie>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12">
                     <div class="card user_statistics">
                         <div class="header">
-                            <h2>Users Report</h2>
+                            <h2>Users Gender Monthly Report</h2>
                         </div>
                         <div class="body">
                             <!-- ChartLineMonth -->

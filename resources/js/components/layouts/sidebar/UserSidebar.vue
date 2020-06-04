@@ -34,7 +34,8 @@
                         <li>
                             <router-link :to="{ name: 'UserDashboard' }">
                                 <i class="icon-speedometer"></i
-                                ><span>Dashboard</span>
+                                >
+                                <span>Dashboard</span>
                             </router-link>
                         </li>
                         <li class="">

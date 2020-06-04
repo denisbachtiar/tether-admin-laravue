@@ -126,12 +126,10 @@ class FilterAge {
         $elder = DB::select('SELECT COUNT(*) FROM (select EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age
         where age > 46')[0]->count;
 
-        $data = [[
-            'kids' => $kids,
-            'adult' => $adult,
-            'old' => $old,
-            'elder' => $elder
-        ]];
+        $data = [
+            'labels' => ['Kids (>17)', 'Adult (17-30)', 'Old (31-45)', 'Elder (>45)'],
+            'data' => [$kids, $adult, $old, $elder]
+        ];
         
         return $data;
     }

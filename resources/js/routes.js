@@ -3,7 +3,7 @@ import ActivityLayout from './components/ActivityLayout'
 
 export const routes = [
     {
-        path: '/user', component: UserLayout, hidden: true,
+        path: '/user', component: UserLayout, meta: { breadCrumb: 'User' },
         children: [
             {
                 path: 'dashboard',
@@ -28,7 +28,7 @@ export const routes = [
         ],
     },
     {
-        path: '/activity', component: ActivityLayout,
+        path: '/activity', component: ActivityLayout, meta: { breadCrumb: 'Activity' },
         children: [
             {
                 path: 'dashboard',

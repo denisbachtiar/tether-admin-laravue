@@ -12,10 +12,10 @@
                         </li>
                     </ul> -->
                     <ul class="nav navbar-nav">
-                        <li class="p_home"><router-link :to="{ name: 'UserDashboard' }" :class="currentPage.includes('user') ? 'home icon-menu active':'home icon-menu'" title="Home">User</router-link></li>
-                        <li class="p_social"><router-link :to="{ name: 'ActivityDashboard' }" :class="currentPage.includes('activity') ? 'social icon-menu active':'social icon-menu'" title="Activity">Activity</router-link></li>
-                        <li class="p_news"><a href="" class="news icon-menu" title="News">Event</a></li>
-                        <!--<li class="p_blog"><a href="#" class="blog icon-menu" title="Blog">News</a></li>-->
+                        <li class="p_home"><router-link :to="{ name: 'UserDashboard' }" :class="currentPage.includes('user') ? 'home icon-nav active':'home icon-nav'" title="Home">User</router-link></li>
+                        <li class="p_social"><router-link :to="{ name: 'ActivityDashboard' }" :class="currentPage.includes('activity') ? 'social icon-nav active':'social icon-nav'" title="Activity">Activity</router-link></li>
+                        <li class="p_news"><a href="" class="news icon-nav" title="News">Event</a></li>
+                        <!--<li class="p_blog"><a href="#" class="blog icon-nav" title="Blog">News</a></li>-->
                     </ul>
                 </div>
                 <div class="navbar-right ml-auto">
@@ -26,7 +26,7 @@
                                     href="javasript:void(0)"
                                     data-toggle="modal"
                                     data-target=".modalLogout"
-                                    class="icon-menu"
+                                    class="icon-nav"
                                     v-b-modal.modal-1
                                     ><i class="icon-power"></i
                                 ></a>
