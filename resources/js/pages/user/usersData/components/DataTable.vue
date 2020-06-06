@@ -2,7 +2,7 @@
     <fragment>
         <data-table
             :columns="columns"
-            url="/api/datauser"
+            url="/api/user/datauser"
             orderBy="user_id"
             @loading="isLoading = true"
             @finishedLoading="isLoading = false"

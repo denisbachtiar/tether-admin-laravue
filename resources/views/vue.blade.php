@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+    <title>Tether | Admin</title>
+    <link rel="icon" href="{{asset('img/theter-icon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('theme/vendor/bootstrap/css/bootstrap.min.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('theme/vendor/font-awesome/css/font-awesome.min.css')}}"> --}}
     {{-- <link rel="stylesheet" href="{{asset('theme/vendor/animate-css/vivify.min.css')}}"> --}}

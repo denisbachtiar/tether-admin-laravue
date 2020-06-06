@@ -33,9 +33,6 @@ const Chart = {
             ],
         },
         options: {
-            animation: {
-                easing: 'easeInCubic'
-            }
         }
         }
     },
@@ -54,7 +51,7 @@ export default {
    }),
    mounted () {
        axios
-            .get("/api/dashboard/graphagepie")
+            .get("/api/user/agegraphpie")
             .then(response => {
                 this.chartdata = response.data
                 this.loaded = true

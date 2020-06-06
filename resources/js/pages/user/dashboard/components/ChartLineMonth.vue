@@ -43,11 +43,6 @@ const Chart = {
                         data: this.chartdata[2]
                     }
                 ],
-            },
-            {
-                animation: {
-                    easing: 'easeInCubic'
-                }
             }
         )
   }
@@ -62,7 +57,7 @@ export default {
    }),
    mounted () {
        axios
-            .get("/api/dashboard/graphmonth")
+            .get("/api/user/monthlygraph")
             .then(response => {
                 this.chartdata = response.data
                 this.loaded = true

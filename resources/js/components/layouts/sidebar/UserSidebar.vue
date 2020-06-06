@@ -43,22 +43,16 @@
                                 <i class="icon-users"></i><span>Users</span>
                             </router-link>
                         </li>
+                        <li class="header">Statistic</li>
                         <li class="">
-                            <a href=""
-                                ><i class="icon-cup"></i
-                                ><span>Activity</span></a
-                            >
+                            <router-link :to="{ name: 'UserGender' }">
+                                <i class="icon-symbol-female"></i><span>Gender</span>
+                            </router-link>
                         </li>
                         <li class="">
                             <a href=""
-                                ><i class=" icon-list"></i
-                                ><span>Category</span></a
-                            >
-                        </li>
-                        <li>
-                            <a href="#"
-                                ><i class=" icon-puzzle"></i
-                                ><span>Maintenance</span></a
+                                ><i class="icon-clock"></i
+                                ><span>Age</span></a
                             >
                         </li>
                     </ul>

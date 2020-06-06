@@ -102,7 +102,7 @@ export default {
     },
     mounted() {
         axios
-            .get("/api/dashboard")
+            .get("/api/user/boxstat")
             .then(response => {
                 // console.log(response.data)
                 this.all = response.data.all;

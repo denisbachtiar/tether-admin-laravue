@@ -22,41 +22,6 @@ class DashboardController extends Controller
         return response()->json($allcount);
     }
 
-    public function graph()
-    {
-        return response()->json(FilterGender::graphMonth());
-    }
-
-    public function graphAgePie()
-    {
-        return response()->json(FilterAge::percentData());
-    }
-
-    public function graphBox()
-    {
-        return response()->json(FilterUserData::allGraphDays());
-    }
-
-    public function allGraphBox()
-    {
-        return response()->json(UsersReport::allGraphDays());
-    }
-
-    public function activeGraphBox()
-    {
-        return response()->json(UsersReport::activeGraphDays());
-    }
-
-    public function iddleGraphBox()
-    {
-        return response()->json(UsersReport::iddleGraphDays());
-    }
-
-    public function nonActiveGraphBox()
-    {
-        return response()->json(UsersReport::nonactiveGraphDays());
-    }
-
     /**
      * Show the form for creating a new resource.
      *

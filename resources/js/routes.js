@@ -25,6 +25,16 @@ export const routes = [
                     breadCrumb: 'Users Data'
                 },
             },
+            {
+                path: 'gender',
+                component: () => import(/* webpackChunkName: "users-component" */
+                    './pages/user/gender/Index'),
+                name: 'UserGender',
+                meta: {
+                    auth: true,
+                    breadCrumb: 'Gender'
+                },
+            },
         ],
     },
     {

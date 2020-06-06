@@ -17,15 +17,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
 Route::post('/login', 'VueController@login')->name('login');
 
-Route::get('/dashboard/allgraphbox', 'DashboardController@allGraphBox')->name('dashboard.allgraphbox');
-Route::get('/dashboard/activegraphbox', 'DashboardController@activeGraphBox')->name('dashboard.activegraphbox');
-Route::get('/dashboard/iddlegraphbox', 'DashboardController@iddleGraphBox')->name('dashboard.iddlegraphbox');
-Route::get('/dashboard/nonactivegraphbox', 'DashboardController@nonActiveGraphBox')->name('dashboard.nonactivegraphbox');
+// USER STAT
+Route::get('/user/boxstat', 'UserStatController@boxStat');
+Route::get('/user/allgraphbox', 'UserStatController@allGraphBox');
+Route::get('/user/activegraphbox', 'UserStatController@activeGraphBox');
+Route::get('/user/iddlegraphbox', 'UserStatController@iddleGraphBox');
+Route::get('/user/nonactivegraphbox', 'UserStatController@nonActiveGraphBox');
+Route::get('/user/dailygraphgender', 'UserStatController@dailyGraphGender');
+Route::get('/user/weeklygraphgender', 'UserStatController@weeklyGraphGender');
+Route::get('/user/monthlygraph', 'UserStatController@graph');
+Route::get('/user/piegraphgender', 'UserStatController@pieGraphGender');
+Route::get('/user/agegraphpie', 'UserStatController@graphAgePie');
 
-Route::get('/dashboard/graphmonth', 'DashboardController@graph')->name('dashboard.graph');
-Route::get('/dashboard/graphagepie', 'DashboardController@graphAgePie')->name('dashboard.graph.age.pie');
-Route::get('/datauser', 'UsersController@show')->name('usersdata');
+// USER DATA
+Route::get('/user/datauser', 'UsersController@show')->name('usersdata');
+
+// ACTIVITY STAT
+Route::get('/activity/boxstatcount', 'ActivityStatController@boxStat');
+Route::get('/activity/listcity', 'ActivityStatController@listCity');
+Route::get('/activity/monthlygraph', 'ActivityStatController@monthlyGraph');

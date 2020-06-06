@@ -48,7 +48,10 @@ class FilterGender {
         return $data;
     }
     public static function graphDays() {
-        $y =[];
+        $maleData = [];
+        $femaleData = [];
+        $undefinedData= [];
+        $dateData= [];
         for ($x = 6; $x >= 0; $x--) {
             $male = DB::table('users')
             ->whereDate('createdAt', date('Y-m-d', strtotime(Carbon::now()->subDays($x))))
@@ -62,14 +65,20 @@ class FilterGender {
             ->whereDate('createdAt', '=', Carbon::now()->subDays($x))
             ->where('gender', '')
             ->count();
-
-            $y[] = array_merge(array($male),array($female),array($undefined));
+            $date = Carbon::now()->subDays($x)->format('d M y');
+            array_push($maleData, $male);
+            array_push($femaleData, $female);
+            array_push($undefinedData, $undefined);
+            array_push($dateData, $date);
           }
+          $y = array_merge(array($maleData),array($femaleData),array($undefinedData), array($dateData));
         return $y;
     }
 
     public static function graphWeek() {
-        $y =[];
+        $maleData = [];
+        $femaleData = [];
+        $undefinedData= [];
         for ($x = 6; $x >= 0; $x--) {
             $male = DB::table('users')
             ->whereBetween('createdAt', [Carbon::now()->subWeek($x+1), Carbon::now()->subWeek($x)])
@@ -83,9 +92,11 @@ class FilterGender {
             ->whereBetween('createdAt', [Carbon::now()->subWeek($x+1), Carbon::now()->subWeek($x)])
             ->where('gender', '')
             ->count();
-
-            $y[] = array_merge(array($male),array($female),array($undefined));
+            array_push($maleData, $male);
+            array_push($femaleData, $female);
+            array_push($undefinedData, $undefined);
           }
+          $y = array_merge(array($maleData),array($femaleData),array($undefinedData));
         return $y;
     }
 
@@ -121,11 +132,10 @@ class FilterGender {
         $male = DB::table('users')->where('gender', 'm')->count();
         $female = DB::table('users')->where('gender', 'f')->count();
         $undefined = DB::table('users')->where('gender', '')->count();
-        $data = [[
-            'male' => $male,
-            'female' => $female,
-            'undefined' => $undefined
-        ]];
+        $data = [
+            'labels' => ['Male', 'Female', 'Undefined'],
+            'data' => [$male, $female, $undefined]
+        ];
         return $data;
     }
 }

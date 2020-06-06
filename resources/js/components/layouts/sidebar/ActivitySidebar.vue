@@ -37,11 +37,6 @@
                                 ><span>Dashboard</span>
                             </router-link>
                         </li>
-                        <li class="">
-                            <router-link>
-                                <i class="icon-cup"></i><span>Activities Data</span>
-                            </router-link>
-                        </li>
                     </ul>
                 </nav>
             </div>
