@@ -24,6 +24,7 @@ Vue.use(IconsPlugin)
 Vue.use(VueParticles)
 Vue.use(Fragment.Plugin)
 Vue.component('simple-line-icons', SimpleLineIcons)
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 import App from "./components/App";
 import store from "./store"

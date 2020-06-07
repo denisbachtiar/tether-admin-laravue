@@ -53,7 +53,11 @@ class FilterAge {
     }
 
     public static function graphDays() {
-        $y =[];
+        $kidsData= [];
+        $adultData= [];
+        $oldData= [];
+        $elderData= [];
+        $dateData= [];
         for ($x = 6; $x >= 0; $x--) {
             $t = Carbon::now()->subDays($x);
             $kids = DB::select('SELECT COUNT(*) as kids FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
@@ -68,13 +72,29 @@ class FilterAge {
             $elder = DB::select('SELECT COUNT(*) as elder FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
             where age > 46 AND DATE("createdAt") = :datet', ['datet'=> $t])[0];
 
-            $y[] = array_merge((array)$kids, (array)$adult, (array)$old, (array)$elder);
+            $date = Carbon::now()->subDays($x)->format('d M y');
+            array_push($kidsData, $kids->kids);
+            array_push($adultData, $adult->adult);
+            array_push($oldData, $old->old);
+            array_push($elderData, $elder->elder);
+            array_push($dateData, $date);
           }
+          $y = [
+            'kids' => $kidsData,
+            'adult' => $adultData,
+            'old' => $oldData,
+            'elder' => $elderData,
+            'date' => $dateData
+            ];
         return $y;
     }
 
     public static function graphWeek() {
-        $y =[];
+        $kidsData= [];
+        $adultData= [];
+        $oldData= [];
+        $elderData= [];
+        $dateData= [];
         for ($x = 6; $x >= 0; $x--) {
             $kids = DB::select('SELECT COUNT(*) as kids FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
             where (age < 17) AND (DATE("createdAt") between :weekt1 and :weekt2)', ['weekt1'=> Carbon::now()->subWeek($x+1), 'weekt2'=> Carbon::now()->subWeek($x)])[0];
@@ -88,13 +108,26 @@ class FilterAge {
             $elder = DB::select('SELECT COUNT(*) as elder FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
             where (age > 46) AND (DATE("createdAt") between :weekt1 and :weekt2)', ['weekt1'=> Carbon::now()->subWeek($x+1), 'weekt2'=> Carbon::now()->subWeek($x)])[0];
 
-            $y[] = array_merge((array)$kids, (array)$adult, (array)$old, (array)$elder);
+            array_push($kidsData, $kids->kids);
+            array_push($adultData, $adult->adult);
+            array_push($oldData, $old->old);
+            array_push($elderData, $elder->elder);
           }
+          $y = [
+            'kids' => $kidsData,
+            'adult' => $adultData,
+            'old' => $oldData,
+            'elder' => $elderData
+            ];
         return $y;
     }
 
     public static function graphMonth() {
-        $y =[];
+        $kidsData= [];
+        $adultData= [];
+        $oldData= [];
+        $elderData= [];
+        $dateData= [];
         for ($x = 6; $x >= 0; $x--) {
             $kids = DB::select('SELECT COUNT(*) as kids FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
             where (age < 17) AND (EXTRACT(MONTH from "createdAt") = :montht)', ['montht'=> Carbon::now()->subMonth($x)->format('m')])[0];
@@ -108,8 +141,20 @@ class FilterAge {
             $elder = DB::select('SELECT COUNT(*) as elder FROM (select*, EXTRACT(year FROM age(current_date,birthdate)) :: int as age from users) as age 
             where (age > 46) AND (EXTRACT(MONTH from "createdAt") = :montht)', ['montht'=> Carbon::now()->subMonth($x)->format('m')])[0];
 
-            $y[] = array_merge((array)$kids, (array)$adult, (array)$old, (array)$elder);
+            $date = Carbon::now()->subMonth($x)->format('Y M');
+            array_push($kidsData, $kids->kids);
+            array_push($adultData, $adult->adult);
+            array_push($oldData, $old->old);
+            array_push($elderData, $elder->elder);
+            array_push($dateData, $date);
           }
+          $y = [
+              'kids' => $kidsData,
+              'adult' => $adultData,
+              'old' => $oldData,
+              'elder' => $elderData,
+              'date' => $dateData
+          ];
         return $y;
     }
 

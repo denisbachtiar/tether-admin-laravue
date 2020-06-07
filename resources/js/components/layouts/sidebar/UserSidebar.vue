@@ -50,10 +50,9 @@
                             </router-link>
                         </li>
                         <li class="">
-                            <a href=""
-                                ><i class="icon-clock"></i
-                                ><span>Age</span></a
-                            >
+                            <router-link :to="{ name: 'UserAge' }">
+                                <i class="icon-clock"></i><span>Age</span>
+                            </router-link>
                         </li>
                     </ul>
                 </nav>

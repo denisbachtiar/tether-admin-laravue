@@ -24,10 +24,10 @@ const Chart = {
                 {
                     data: this.chartdata.data,
                     backgroundColor: [
-                        "#4b77a9",
-                        "#5f255f",
-                        "#d21243",
-                        "#B27200"
+                        "#4586df",
+                        "#f87979",
+                        "#45c13d",
+                        "#878787"
                     ],
                 }
             ],

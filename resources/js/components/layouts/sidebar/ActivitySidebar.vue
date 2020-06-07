@@ -33,8 +33,12 @@
                         <li class="header">Main</li>
                         <li>
                             <router-link :to="{ name: 'ActivityDashboard' }">
-                                <i class="icon-speedometer"></i
-                                ><span>Dashboard</span>
+                                <i class="icon-speedometer"></i><span>Dashboard</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{ name: 'Activities' }">
+                                <i class="icon-cup"></i><span>Activity Data</span>
                             </router-link>
                         </li>
                     </ul>

@@ -30,6 +30,7 @@
         "c3": "^0.7.15",
         "chart.js": "^2.9.3",
         "laravel-vue-datatable": "^0.5.7",
+        "laravel-vue-pagination": "^2.3.1",
         "nprogress": "^0.2.0",
         "vue-c3": "^1.2.11",
         "vue-chartjs": "^3.5.0",

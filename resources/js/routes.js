@@ -35,6 +35,16 @@ export const routes = [
                     breadCrumb: 'Gender'
                 },
             },
+            {
+                path: 'age',
+                component: () => import(/* webpackChunkName: "users-component" */
+                    './pages/user/age/Index'),
+                name: 'UserAge',
+                meta: {
+                    auth: true,
+                    breadCrumb: 'Age'
+                },
+            },
         ],
     },
     {
@@ -48,6 +58,16 @@ export const routes = [
                 meta: {
                     auth: true,
                     breadCrumb: 'Dashboard Activity'
+                },
+            },
+            {
+                path: 'activities',
+                component: () => import(/* webpackChunkName: "activity-dashboard-component" */
+                    './pages/activity/activityData/Index'),
+                name: 'Activities',
+                meta: {
+                    auth: true,
+                    breadCrumb: 'Activity Data'
                 },
             }
         ]

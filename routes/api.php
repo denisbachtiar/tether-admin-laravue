@@ -25,10 +25,15 @@ Route::get('/user/allgraphbox', 'UserStatController@allGraphBox');
 Route::get('/user/activegraphbox', 'UserStatController@activeGraphBox');
 Route::get('/user/iddlegraphbox', 'UserStatController@iddleGraphBox');
 Route::get('/user/nonactivegraphbox', 'UserStatController@nonActiveGraphBox');
+    //GENDER STAT
 Route::get('/user/dailygraphgender', 'UserStatController@dailyGraphGender');
 Route::get('/user/weeklygraphgender', 'UserStatController@weeklyGraphGender');
 Route::get('/user/monthlygraph', 'UserStatController@graph');
 Route::get('/user/piegraphgender', 'UserStatController@pieGraphGender');
+    //AGE STAT
+Route::get('/user/dailygraphage', 'UserStatController@dailyGraphAge');
+Route::get('/user/weeklygraphage', 'UserStatController@weeklyGraphAge');
+Route::get('/user/monthlygraphage', 'UserStatController@monthlyGraphAge');
 Route::get('/user/agegraphpie', 'UserStatController@graphAgePie');
 
 // USER DATA
@@ -38,3 +43,6 @@ Route::get('/user/datauser', 'UsersController@show')->name('usersdata');
 Route::get('/activity/boxstatcount', 'ActivityStatController@boxStat');
 Route::get('/activity/listcity', 'ActivityStatController@listCity');
 Route::get('/activity/monthlygraph', 'ActivityStatController@monthlyGraph');
+
+// ACTIVITY DATA
+Route::get('/activity/data', 'ActivityDataController@show');

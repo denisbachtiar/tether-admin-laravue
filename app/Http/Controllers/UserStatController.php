@@ -46,6 +46,23 @@ class UserStatController extends Controller
         return response()->json(FilterGender::graphMonth());
     }
 
+    //AGE STAT
+
+    public function dailyGraphAge()
+    {
+        return response()->json(FilterAge::graphDays());
+    }
+
+    public function weeklyGraphAge()
+    {
+        return response()->json(FilterAge::graphWeek());
+    }
+
+    public function monthlyGraphAge()
+    {
+        return response()->json(FilterAge::graphMonth());
+    }
+
     public function graphAgePie()
     {
         return response()->json(FilterAge::percentData());
