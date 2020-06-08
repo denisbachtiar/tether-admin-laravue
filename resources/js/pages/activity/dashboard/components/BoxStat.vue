@@ -57,7 +57,7 @@ export default {
             loading: true
         }
     },
-    mounted() {
+    created() {
         axios
             .get("/api/activity/boxstatcount")
             .then(response => {

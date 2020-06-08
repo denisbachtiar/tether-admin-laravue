@@ -45,4 +45,4 @@ Route::get('/activity/listcity', 'ActivityStatController@listCity');
 Route::get('/activity/monthlygraph', 'ActivityStatController@monthlyGraph');
 
 // ACTIVITY DATA
-Route::get('/activity/data', 'ActivityDataController@show');
+Route::post('/activity/data', 'ActivityDataController@show');

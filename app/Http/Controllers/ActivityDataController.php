@@ -44,10 +44,11 @@ class ActivityDataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
         $data = DB::table('activities')
         ->select('activities.*')
+        ->where("activities.title", "LIKE", "%$request->search%")
         ->paginate(10);
         return response()->json($data);
     }

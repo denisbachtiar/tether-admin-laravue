@@ -24,7 +24,7 @@ export default {
             loading: true
         }
     },
-    mounted() {
+    created() {
         axios
         .get('/api/activity/listcity')
         .then(response => {

@@ -55,7 +55,7 @@ export default {
        chartdata: null,
        loaded: false
    }),
-   mounted () {
+   created () {
        axios
             .get("/api/activity/monthlygraph")
             .then(response => {

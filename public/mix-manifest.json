@@ -15,8 +15,8 @@
     "/vendors~activity-dashboard-component.js.map": "/vendors~activity-dashboard-component.js.map",
     "/vendors~activity-dashboard-component~dashboard-component~users-component.js": "/vendors~activity-dashboard-component~dashboard-component~users-component.js",
     "/vendors~activity-dashboard-component~dashboard-component~users-component.js.map": "/vendors~activity-dashboard-component~dashboard-component~users-component.js.map",
-    "/vendors~users-component.js": "/vendors~users-component.js",
-    "/vendors~users-component.js.map": "/vendors~users-component.js.map",
     "/vendors~activity-dashboard-component~users-component.js": "/vendors~activity-dashboard-component~users-component.js",
-    "/vendors~activity-dashboard-component~users-component.js.map": "/vendors~activity-dashboard-component~users-component.js.map"
+    "/vendors~activity-dashboard-component~users-component.js.map": "/vendors~activity-dashboard-component~users-component.js.map",
+    "/vendors~users-component.js": "/vendors~users-component.js",
+    "/vendors~users-component.js.map": "/vendors~users-component.js.map"
 }
