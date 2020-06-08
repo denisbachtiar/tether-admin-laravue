@@ -3,9 +3,20 @@
         <div class="row clearfix">
                 <div class="col-12">
                 <b-card>
-                <b-form-input v-on:keyup="getResults" v-model="text" placeholder="Search" style="width: 250px;"></b-form-input>
+                <b-form-input v-on:keyup="getResults" v-model="text" placeholder="Title" style="width: 200px;"></b-form-input>
                     <div class="table-responsive mt-2 mb-3">
-                        <b-table hover :items="items" :fields="fields" class="table-custom"></b-table>
+                        <b-table hover :items="items" :fields="fields" class="table-custom">
+                            <template v-slot:cell(number)="row">
+                                <span>{{number[row.index]}}</span>
+                            </template>
+                            <template v-slot:cell(date)="row">
+                                <span>{{ row.item.date | moment("ddd, MMM YYYY h:mm:ss") }}</span>
+                            </template>
+                            <template v-slot:cell(active)="row">
+                                <span class="text-success" v-if="row.item.active">Active</span>
+                                <span v-else>Banned</span>
+                            </template>
+                        </b-table>
                         <loading 
                             :is-full-page="false" 
                             :loader="loader"
@@ -33,20 +44,32 @@ export default {
     data() {
         return {
             fields: [
+                {key: 'number', label: 'No'},
                 {key: 'title', label: 'Title'},
                 {key: 'slot', label: 'Slot'},
-                {key: 'date', label: 'Date Create'}
+                {key: 'date', label: 'Date'},
+                {key: 'active', label: 'Status'},
                 ],
             tableData: {},
             items: [],
             isLoading: true,
             color: '#4888e0',
             loader: 'dots',
-            text: ''
+            text: '',
+            number: []
         }
     },
     created() {
         this.getResults();
+    },
+    computed: {
+        numbering: function() {
+            this.number = []
+            for(let i = this.tableData.from; i<=this.tableData.to; i++){
+                this.number.push(i)
+            }
+            return this.number
+        }
     },
     methods: {
         getResults(page) {
@@ -54,13 +77,6 @@ export default {
             if (typeof page === 'undefined') {
                 page = 1;
             }
-            // axios
-            //     .get(`/api/activity/data/${this.text}?page=${page}`)
-            //     .then(response => {
-            //         this.tableData = response.data;
-            //         this.items = response.data.data;
-            //         this.isLoading = false
-            //     });
             axios
                 .post(`/api/activity/data?page=${page}`,{
                     search: this.text
@@ -69,6 +85,7 @@ export default {
                     this.tableData = response.data;
                     this.items = response.data.data;
                     this.isLoading = false
+                    this.numbering()
                 });
             }
         }

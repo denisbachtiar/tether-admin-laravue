@@ -121,6 +121,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -130,6 +141,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       fields: [{
+        key: 'number',
+        label: 'No'
+      }, {
         key: 'title',
         label: 'Title'
       }, {
@@ -137,18 +151,33 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Slot'
       }, {
         key: 'date',
-        label: 'Date Create'
+        label: 'Date'
+      }, {
+        key: 'active',
+        label: 'Status'
       }],
       tableData: {},
       items: [],
       isLoading: true,
       color: '#4888e0',
       loader: 'dots',
-      text: ''
+      text: '',
+      number: []
     };
   },
   created: function created() {
     this.getResults();
+  },
+  computed: {
+    numbering: function numbering() {
+      this.number = [];
+
+      for (var i = this.tableData.from; i <= this.tableData.to; i++) {
+        this.number.push(i);
+      }
+
+      return this.number;
+    }
   },
   methods: {
     getResults: function getResults(page) {
@@ -158,14 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (typeof page === 'undefined') {
         page = 1;
-      } // axios
-      //     .get(`/api/activity/data/${this.text}?page=${page}`)
-      //     .then(response => {
-      //         this.tableData = response.data;
-      //         this.items = response.data.data;
-      //         this.isLoading = false
-      //     });
-
+      }
 
       axios.post("/api/activity/data?page=".concat(page), {
         search: this.text
@@ -173,6 +195,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.tableData = response.data;
         _this.items = response.data.data;
         _this.isLoading = false;
+
+        _this.numbering();
       });
     }
   }
@@ -937,8 +961,8 @@ var render = function() {
             "b-card",
             [
               _c("b-form-input", {
-                staticStyle: { width: "250px" },
-                attrs: { placeholder: "Search" },
+                staticStyle: { width: "200px" },
+                attrs: { placeholder: "Title" },
                 on: { keyup: _vm.getResults },
                 model: {
                   value: _vm.text,
@@ -955,7 +979,46 @@ var render = function() {
                 [
                   _c("b-table", {
                     staticClass: "table-custom",
-                    attrs: { hover: "", items: _vm.items, fields: _vm.fields }
+                    attrs: { hover: "", items: _vm.items, fields: _vm.fields },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "cell(number)",
+                        fn: function(row) {
+                          return [
+                            _c("span", [_vm._v(_vm._s(_vm.number[row.index]))])
+                          ]
+                        }
+                      },
+                      {
+                        key: "cell(date)",
+                        fn: function(row) {
+                          return [
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("moment")(
+                                    row.item.date,
+                                    "ddd, MMM YYYY h:mm:ss"
+                                  )
+                                )
+                              )
+                            ])
+                          ]
+                        }
+                      },
+                      {
+                        key: "cell(active)",
+                        fn: function(row) {
+                          return [
+                            row.item.active
+                              ? _c("span", { staticClass: "text-success" }, [
+                                  _vm._v("Active")
+                                ])
+                              : _c("span", [_vm._v("Banned")])
+                          ]
+                        }
+                      }
+                    ])
                   }),
                   _vm._v(" "),
                   _c("loading", {
