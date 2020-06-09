@@ -132,6 +132,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -162,7 +167,8 @@ __webpack_require__.r(__webpack_exports__);
       color: '#4888e0',
       loader: 'dots',
       text: '',
-      number: []
+      number: [],
+      show: []
     };
   },
   created: function created() {
@@ -177,6 +183,16 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.number;
+    },
+    showing: function showing() {
+      this.show = [];
+
+      for (var i = this.tableData.from; i <= this.tableData.to; i++) {
+        var t = false;
+        this.show.push(t);
+      }
+
+      return this.show;
     }
   },
   methods: {
@@ -195,9 +211,33 @@ __webpack_require__.r(__webpack_exports__);
         _this.tableData = response.data;
         _this.items = response.data.data;
         _this.isLoading = false;
-
-        _this.numbering();
+        _this.showing;
       });
+    },
+    onChange: function onChange(event, id) {
+      var _this2 = this;
+
+      this.$swal({
+        title: 'Update Status',
+        text: 'Apakah anda yakin ingin mengganti status activity ini?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          axios.post("/api/activity/updatestatus", {
+            id: id,
+            value: event
+          }).then(function (response) {
+            _this2.getResults(_this2.tableData.current_page);
+          });
+        } else {
+          _this2.getResults(_this2.tableData.current_page);
+        }
+      });
+    },
+    onShow: function onShow(index) {
+      this.show.splice(index, 1, !this.show[index]);
     }
   }
 });
@@ -491,7 +531,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, ".table {\n  color: #505050;\n  font-weight: 300;\n}\n.light_version .table.table-custom tbody tr {\n  cursor: pointer;\n}\n.light_version .table.table-custom tbody tr:hover {\n  background-color: whitesmoke;\n}\n.pagination {\n  justify-content: flex-end;\n}", ""]);
+exports.push([module.i, ".table {\n  color: #505050;\n  font-weight: 300;\n}\n.light_version .table.table-custom tbody tr {\n  cursor: pointer;\n}\n.light_version .table.table-custom tbody tr:hover {\n  background-color: whitesmoke;\n}\n.pagination {\n  justify-content: flex-end;\n}\n.custom-select {\n  width: 65%;\n  font-size: 0.8rem;\n  font-weight: 300;\n}", ""]);
 
 // exports
 
@@ -840,7 +880,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-6 col-sm-12" }, [
-    _c("h1", [_vm._v("Dashboard")]),
+    _c("h1", [_vm._v(_vm._s(_vm.crumbs[1].text))]),
     _vm._v(" "),
     _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
       _c(
@@ -985,7 +1025,9 @@ var render = function() {
                         key: "cell(number)",
                         fn: function(row) {
                           return [
-                            _c("span", [_vm._v(_vm._s(_vm.number[row.index]))])
+                            _c("span", [
+                              _vm._v(_vm._s(_vm.numbering[row.index]))
+                            ])
                           ]
                         }
                       },
@@ -1010,11 +1052,112 @@ var render = function() {
                         key: "cell(active)",
                         fn: function(row) {
                           return [
-                            row.item.active
-                              ? _c("span", { staticClass: "text-success" }, [
+                            _c(
+                              "b-form-select",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.show[row.index],
+                                    expression: "show[row.index]"
+                                  }
+                                ],
+                                on: {
+                                  change: function($event) {
+                                    return _vm.onChange(
+                                      $event,
+                                      row.item.activity_id
+                                    )
+                                  }
+                                },
+                                model: {
+                                  value: row.item.active,
+                                  callback: function($$v) {
+                                    _vm.$set(row.item, "active", $$v)
+                                  },
+                                  expression: "row.item.active"
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "true" } }, [
                                   _vm._v("Active")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "false" } }, [
+                                  _vm._v("Banned")
                                 ])
-                              : _c("span", [_vm._v("Banned")])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("i", {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.show[row.index],
+                                  expression: "show[row.index]"
+                                }
+                              ],
+                              staticClass: "icon-close text-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.onShow(row.index)
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            row.item.active
+                              ? _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: !_vm.show[row.index],
+                                        expression: "!show[row.index]"
+                                      }
+                                    ],
+                                    staticClass: "text-success",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.onShow(row.index)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("Active "),
+                                    _c("i", {
+                                      staticClass: "icon-pencil text-warning"
+                                    })
+                                  ]
+                                )
+                              : _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: !_vm.show[row.index],
+                                        expression: "!show[row.index]"
+                                      }
+                                    ],
+                                    staticClass: "text-danger",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.onShow(row.index)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("Banned "),
+                                    _c("i", {
+                                      staticClass: "icon-pencil text-warning"
+                                    })
+                                  ]
+                                )
                           ]
                         }
                       }

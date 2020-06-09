@@ -49,8 +49,15 @@ class ActivityDataController extends Controller
         $data = DB::table('activities')
         ->select('activities.*')
         ->where("activities.title", "LIKE", "%$request->search%")
+        ->orderBy('activities.createdAt')
         ->paginate(10);
         return response()->json($data);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        DB::table('activities')->where('activity_id', $request->id)->update(['active' => $request->value]);
+        return response()->json(['success' => true]);
     }
 
     /**

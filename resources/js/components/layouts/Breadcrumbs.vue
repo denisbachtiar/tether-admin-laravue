@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-6 col-sm-12">
-        <h1>Dashboard</h1>
+        <h1>{{crumbs[1].text}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">

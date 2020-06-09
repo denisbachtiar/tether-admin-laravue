@@ -703,7 +703,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-md-6 col-sm-12" }, [
-    _c("h1", [_vm._v("Dashboard")]),
+    _c("h1", [_vm._v(_vm._s(_vm.crumbs[1].text))]),
     _vm._v(" "),
     _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
       _c(

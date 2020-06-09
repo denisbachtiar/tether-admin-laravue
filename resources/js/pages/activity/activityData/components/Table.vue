@@ -7,14 +7,19 @@
                     <div class="table-responsive mt-2 mb-3">
                         <b-table hover :items="items" :fields="fields" class="table-custom">
                             <template v-slot:cell(number)="row">
-                                <span>{{number[row.index]}}</span>
+                                <span>{{numbering[row.index]}}</span>
                             </template>
                             <template v-slot:cell(date)="row">
                                 <span>{{ row.item.date | moment("ddd, MMM YYYY h:mm:ss") }}</span>
                             </template>
                             <template v-slot:cell(active)="row">
-                                <span class="text-success" v-if="row.item.active">Active</span>
-                                <span v-else>Banned</span>
+                                <b-form-select v-model="row.item.active" v-show="show[row.index]" @change="onChange($event, row.item.activity_id)">
+                                    <option value="true">Active</option>
+                                    <option value="false">Banned</option>
+                                </b-form-select>
+                                <i v-show="show[row.index]" @click="onShow(row.index)" class="icon-close text-danger"></i>
+                                <span class="text-success" v-if="row.item.active" v-show="!show[row.index]" @click="onShow(row.index)">Active <i class="icon-pencil text-warning"></i></span>
+                                <span class="text-danger" v-show="!show[row.index]" @click="onShow(row.index)" v-else>Banned <i class="icon-pencil text-warning"></i></span>
                             </template>
                         </b-table>
                         <loading 
@@ -56,7 +61,8 @@ export default {
             color: '#4888e0',
             loader: 'dots',
             text: '',
-            number: []
+            number: [],
+            show: []
         }
     },
     created() {
@@ -69,6 +75,14 @@ export default {
                 this.number.push(i)
             }
             return this.number
+        },
+        showing: function() {
+            this.show = []
+            for(let i = this.tableData.from; i<=this.tableData.to; i++){
+                let t = false
+                this.show.push(t)
+            }
+            return this.show
         }
     },
     methods: {
@@ -85,8 +99,35 @@ export default {
                     this.tableData = response.data;
                     this.items = response.data.data;
                     this.isLoading = false
-                    this.numbering()
+                    this.showing
                 });
+            },
+        onChange(event, id) {
+                this.$swal({
+                    title: 'Update Status',
+                    text: 'Apakah anda yakin ingin mengganti status activity ini?',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios
+                        .post(`/api/activity/updatestatus`,{
+                            id: id,
+                            value: event 
+                        })
+                        .then(response => {
+                            this.getResults(this.tableData.current_page) 
+                        });
+                    }
+                    else {
+                        this.getResults(this.tableData.current_page)
+                    }
+                })
+            },
+        onShow(index) {
+            this.show.splice(index, 1, !this.show[index])
             }
         }
     }
@@ -104,5 +145,10 @@ export default {
     }
     .pagination {
         justify-content: flex-end;
+    }
+    .custom-select {
+        width: 65%;
+        font-size: .8rem;
+        font-weight: 300;
     }
 </style>

@@ -46,3 +46,4 @@ Route::get('/activity/monthlygraph', 'ActivityStatController@monthlyGraph');
 
 // ACTIVITY DATA
 Route::post('/activity/data', 'ActivityDataController@show');
+Route::post('/activity/updatestatus', 'ActivityDataController@updateStatus');
