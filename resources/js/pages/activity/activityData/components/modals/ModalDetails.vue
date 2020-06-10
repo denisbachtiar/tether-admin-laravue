@@ -1,14 +1,23 @@
 <template>
     <fragment>
         <b-modal size="lg" :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
-            <p class="mb-0">Content</p>
+            <b-carousel
+                id="carousel-fade"
+                style="text-shadow: 0px 0px 2px #000"
+                fade
+                indicators
+                img-width="100%"
+                img-height="200px !important"
+            >
+                <b-carousel-slide v-for="(item, index) in infoModal.content.images" :key="index" :img-src="item.image"></b-carousel-slide>
+            </b-carousel>
+            <p class="mb-0 mt-3">Content</p>
             <p><small>{{infoModal.content.content}}</small></p>
             <p class="mb-0">Location</p>
             <p class="mb-0"><small>{{infoModal.content.address}}</small></p>
             <gmaps-map :options="mapsData.options" style="height: 300px;">
                 <gmaps-marker :options="mapsData.pos" />
             </gmaps-map>
-            {{infoModal.content}}
         </b-modal>
     </fragment>
 </template>
@@ -63,3 +72,8 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+    .carousel-inner {
+        height: 250px;
+    }
+</style>

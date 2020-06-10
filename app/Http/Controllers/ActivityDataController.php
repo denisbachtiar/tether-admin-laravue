@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Activities;
 
 class ActivityDataController extends Controller
 {
@@ -46,8 +47,16 @@ class ActivityDataController extends Controller
      */
     public function show(Request $request)
     {
-        $data = DB::table('activities')
-        ->select('activities.*')
+        // $data = DB::table('activities')
+        // ->join('users','users.user_id','=','activities.author_id')
+        // ->join('activity_images','activity_images.activity_id','=','activities.activity_id')
+        // ->select('activities.*','users.username','activity_images.image')
+        // ->where("activities.title", "LIKE", "%$request->search%")
+        // ->orderBy('activities.createdAt')
+        // ->paginate(10);
+        $data = Activities::with('images')
+        ->join('users','users.user_id','=','activities.author_id')
+        ->select('activities.*','users.username')
         ->where("activities.title", "LIKE", "%$request->search%")
         ->orderBy('activities.createdAt')
         ->paginate(10);
