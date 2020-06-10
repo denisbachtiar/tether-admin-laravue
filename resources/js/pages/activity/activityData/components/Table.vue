@@ -9,6 +9,10 @@
                             <template v-slot:cell(number)="row">
                                 <span>{{numbering[row.index]}}</span>
                             </template>
+                            <template v-slot:cell(title)="row">
+                                <span>{{row.item.title}}</span>
+                                <div style="color: #8e8e8e;"><small><i class="icon-share mr-3"> {{row.item.share}}</i><i class="icon-eye"> {{row.item.view}}</i></small></div>
+                            </template>
                             <template v-slot:cell(date)="row">
                                 <span>{{ row.item.date | moment("ddd, MMM YYYY h:mm:ss") }}</span>
                             </template>
@@ -20,6 +24,9 @@
                                 <i v-show="show[row.index]" @click="onShow(row.index)" class="icon-close text-danger"></i>
                                 <span class="text-success" v-if="row.item.active" v-show="!show[row.index]" @click="onShow(row.index)">Active <i class="icon-pencil text-warning"></i></span>
                                 <span class="text-danger" v-show="!show[row.index]" @click="onShow(row.index)" v-else>Banned <i class="icon-pencil text-warning"></i></span>
+                            </template>
+                            <template v-slot:cell(details)="row">
+                                <b-button size="sm" @click="info(row.item, row.index, $event.target)" variant="info"><i class="icon-eye"></i></b-button>
                             </template>
                         </b-table>
                         <loading 
@@ -35,6 +42,7 @@
                     </div>
                     </b-card>
                 </div>
+                <ModalDetails :infoData="infoData"></ModalDetails>
             </div>
     </fragment>
 </template>
@@ -42,18 +50,22 @@
 <script>
 import Loading from "vue-loading-overlay"
 import "vue-loading-overlay/dist/vue-loading.css"
+import ModalDetails from './modals/ModalDetails'
+import { gmapsMap, gmapsMarker } from 'x5-gmaps'
 export default {
     components: {
-        Loading
+        Loading,
+        ModalDetails
     },
     data() {
         return {
             fields: [
                 {key: 'number', label: 'No'},
+                {key: 'active', label: 'Status'},
                 {key: 'title', label: 'Title'},
                 {key: 'slot', label: 'Slot'},
                 {key: 'date', label: 'Date'},
-                {key: 'active', label: 'Status'},
+                {key: 'details', label: 'Details'}
                 ],
             tableData: {},
             items: [],
@@ -62,7 +74,12 @@ export default {
             loader: 'dots',
             text: '',
             number: [],
-            show: []
+            show: [],
+            infoData: {
+                items: '',
+                button: '',
+                index: ''
+            },
         }
     },
     created() {
@@ -128,7 +145,13 @@ export default {
             },
         onShow(index) {
             this.show.splice(index, 1, !this.show[index])
-            }
+            },
+        info(item, index, button){
+            this.infoData.items = item
+            this.infoData.button = button
+            this.infoData.index = index 
+            this.$root.$refs.ModalDetails.info();
+        },
         }
     }
 </script>
@@ -150,5 +173,10 @@ export default {
         width: 65%;
         font-size: .8rem;
         font-weight: 300;
+    }
+    p {
+        small{
+            color: #8e8e8e;
+        }
     }
 </style>
