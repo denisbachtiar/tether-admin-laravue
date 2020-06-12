@@ -13,6 +13,10 @@
                                 <span>{{row.item.title}}</span>
                                 <div style="color: #8e8e8e;"><small><i class="icon-share mr-3"> {{row.item.share}}</i><i class="icon-eye"> {{row.item.view}}</i></small></div>
                             </template>
+                            <template v-slot:cell(slot)="row">
+                                <span v-if="row.item.slot == 0">~</span>
+                                <span v-else>{{row.item.slot}}</span>
+                            </template>
                             <template v-slot:cell(date)="row">
                                 <span>{{ row.item.date | moment("ddd, MMM YYYY h:mm:ss") }}</span>
                             </template>

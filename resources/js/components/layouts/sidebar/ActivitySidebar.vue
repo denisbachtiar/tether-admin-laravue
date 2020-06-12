@@ -41,6 +41,11 @@
                                 <i class="icon-cup"></i><span>Activity Data</span>
                             </router-link>
                         </li>
+                        <li>
+                            <router-link :to="{ name: 'Banners' }">
+                                <i class="icon-grid"></i><span>Banners</span>
+                            </router-link>
+                        </li>
                     </ul>
                 </nav>
             </div>

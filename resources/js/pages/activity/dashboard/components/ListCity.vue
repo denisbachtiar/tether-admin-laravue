@@ -1,6 +1,6 @@
 <template>
     <fragment>
-    <Skeleton v-if="loading" count="7" width="100%" height="40px" />
+    <Skeleton v-if="loading" :count="7" width="100%" height="40px" />
         <table class="table table-hover table-custom spacing5 m-t--5 mb-0">
             <tbody>
                 <tr v-for="(item, index) in listCity" :key="index">

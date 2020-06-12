@@ -62,12 +62,22 @@ export const routes = [
             },
             {
                 path: 'activities',
-                component: () => import(/* webpackChunkName: "activity-dashboard-component" */
+                component: () => import(/* webpackChunkName: "activity-data-component" */
                     './pages/activity/activityData/Index'),
                 name: 'Activities',
                 meta: {
                     auth: true,
                     breadCrumb: 'Activity Data'
+                },
+            },
+            {
+                path: 'banners',
+                component: () => import(/* webpackChunkName: "activity-banners-component" */
+                    './pages/activity/banners/Index'),
+                name: 'Banners',
+                meta: {
+                    auth: true,
+                    breadCrumb: 'Banners'
                 },
             }
         ]

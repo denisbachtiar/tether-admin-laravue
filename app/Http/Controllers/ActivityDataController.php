@@ -69,6 +69,16 @@ class ActivityDataController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function showBanners(Request $request)
+    {
+        $data = DB::table('banners')
+        ->select('banners.*')
+        ->where("banners.name", "LIKE", "%$request->search%")
+        ->orderBy('banners.createdAt')
+        ->paginate(2);
+        return response()->json($data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
