@@ -47,13 +47,6 @@ class ActivityDataController extends Controller
      */
     public function show(Request $request)
     {
-        // $data = DB::table('activities')
-        // ->join('users','users.user_id','=','activities.author_id')
-        // ->join('activity_images','activity_images.activity_id','=','activities.activity_id')
-        // ->select('activities.*','users.username','activity_images.image')
-        // ->where("activities.title", "LIKE", "%$request->search%")
-        // ->orderBy('activities.createdAt')
-        // ->paginate(10);
         $data = Activities::with('images')
         ->join('users','users.user_id','=','activities.author_id')
         ->select('activities.*','users.username')
@@ -74,9 +67,25 @@ class ActivityDataController extends Controller
         $data = DB::table('banners')
         ->select('banners.*')
         ->where("banners.name", "LIKE", "%$request->search%")
-        ->orderBy('banners.createdAt')
-        ->paginate(2);
+        ->orderBy('banners.createdAt','DESC')
+        ->paginate(6);
         return response()->json($data);
+    }
+
+    public function addNewBanner(Request $request)
+    {
+        $data = DB::table('banners')->insert([
+            [
+                'name' => $request->title, 
+                'description' => $request->description
+            ],
+        ]);
+        return response()->json($data);
+    }
+
+    public function destroyBanner($id) {
+        $res = DB::table('banners')->where('banner_id', $id)->delete();
+        return response()->json($res);
     }
 
     /**

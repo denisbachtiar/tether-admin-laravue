@@ -11,7 +11,7 @@
                     <h6 class="mt-3 mb-0">{{item.name}}</h6>
                     <p>{{item.description}}</p>
                     <button class="btn btn-default btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm">Delete</button>
+                    <button class="btn btn-danger btn-sm" @click="deleteBanner(item.banner_id)">Delete</button>
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@ export default {
     },
     created() {
         this.getResults();
+        this.$root.$refs.ListBanner = this;
     },
     methods: {
         getResults(page) {
@@ -52,6 +53,27 @@ export default {
                     this.isLoading = false
                 });
             },
+        deleteBanner(id) {
+            this.$swal({
+                    title: 'Delete Banner',
+                    text: 'Apakah anda yakin ingin menghapus banner ini?',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios
+                        .delete(`/api/activity/banners/delete/${id}`)
+                        .then(response => {
+                            this.getResults(this.listData.current_page) 
+                        });
+                    }
+                    else {
+
+                    }
+                })
+        }
     },
 }
 </script>

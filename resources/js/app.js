@@ -15,6 +15,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import SimpleLineIcons from 'vue-simple-line'
 import VueSwal from 'vue-swal'
 import x5GMaps from 'x5-gmaps'
+import Vuelidate from 'vuelidate'
 require("./bootstrap");
 
 window.Vue = require("vue")
@@ -29,6 +30,7 @@ Vue.use(VueSwal)
 Vue.component('simple-line-icons', SimpleLineIcons)
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(x5GMaps, { key: 'AIzaSyDaYbdWKAZgyTRy_rFzr6UdRGNY_Emu3VE', libraries: ['places'] })
+Vue.use(Vuelidate)
 
 import App from "./components/App";
 import store from "./store"

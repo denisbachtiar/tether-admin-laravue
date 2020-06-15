@@ -49,3 +49,5 @@ Route::post('/activity/data', 'ActivityDataController@show');
 Route::post('/activity/updatestatus', 'ActivityDataController@updateStatus');
     //BANNERS
 Route::post('/activity/banners', 'ActivityDataController@showBanners');
+Route::post('/activity/banners/addnew', 'ActivityDataController@addNewBanner');
+Route::delete('/activity/banners/delete/{id}', 'ActivityDataController@destroyBanner');
