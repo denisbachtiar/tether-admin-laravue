@@ -74,16 +74,33 @@ class ActivityDataController extends Controller
 
     public function addNewBanner(Request $request)
     {
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $imageName);
+
         $data = DB::table('banners')->insert([
             [
                 'name' => $request->title, 
+                'link' => url('images/'.$imageName),
                 'description' => $request->description
             ],
         ]);
         return response()->json($data);
     }
 
-    public function destroyBanner($id) {
+    public function editBanner(Request $request)
+    {
+        $data = DB::table('banners')->where('banner_id', $request->id)->update(
+            [
+                'name' => $request->title, 
+                'description' => $request->description
+            ],
+        );
+        return response()->json($data);
+    }
+
+    public function destroyBanner($id, Request $request) {
+        unlink(public_path()."/images/".$request->image);
+        // return response()->json($request->image);
         $res = DB::table('banners')->where('banner_id', $id)->delete();
         return response()->json($res);
     }

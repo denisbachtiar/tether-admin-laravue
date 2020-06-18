@@ -10,28 +10,32 @@
                     <img :src="item.link" style="width: 100%" alt="">
                     <h6 class="mt-3 mb-0">{{item.name}}</h6>
                     <p>{{item.description}}</p>
-                    <button class="btn btn-default btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm" @click="deleteBanner(item.banner_id)">Delete</button>
+                    <button class="btn btn-default btn-sm" @click="EditBanner(item)">Edit</button>
+                    <button class="btn btn-danger btn-sm" @click="deleteBanner(item.banner_id, item.link)">Delete</button>
                 </div>
             </div>
         </div>
     </div>
     <div>
     <pagination :data="listData" @pagination-change-page="getResults" class="ml-auto"></pagination>
+    <Modals></Modals>
     </div>
     </fragment>
 </template>
 <script>
 import { Skeleton } from 'vue-loading-skeleton'
+import Modals from './Modals'
 export default {
     components: {
-        Skeleton
+        Skeleton,
+        Modals
     },
     data() {
         return {
             listData: {},
             isLoading: true,
-            text: null
+            text: null,
+            editDataModal: null
         }
     },
     created() {
@@ -53,7 +57,15 @@ export default {
                     this.isLoading = false
                 });
             },
-        deleteBanner(id) {
+        EditBanner(data) {
+            const refModal = this.$root.$refs.Modals
+            refModal.idBanner = data.banner_id
+            refModal.form.title = data.name
+            refModal.form.desc = data.description
+            refModal.showModal()
+        },
+        deleteBanner(id, link) {
+            var linx = link.split('/')
             this.$swal({
                     title: 'Delete Banner',
                     text: 'Apakah anda yakin ingin menghapus banner ini?',
@@ -64,7 +76,9 @@ export default {
                 .then((willDelete) => {
                     if (willDelete) {
                         axios
-                        .delete(`/api/activity/banners/delete/${id}`)
+                        .post(`/api/activity/banners/delete/${id}`, {
+                            image: linx[linx.length - 1]
+                        })
                         .then(response => {
                             this.getResults(this.listData.current_page) 
                         });

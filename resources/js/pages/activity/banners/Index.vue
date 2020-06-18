@@ -8,7 +8,7 @@
                 </div>
             </div>
             <ListBanner></ListBanner>
-            <ModalAdd/>
+            <Modals/>
         </div>
     </div>
 </template>
@@ -16,16 +16,16 @@
 <script>
 import Breadcrumb from '../../../components/layouts/Breadcrumbs'
 import ListBanner from './components/ListBanner'
-import ModalAdd from './components/ModalAdd'
+import Modals from './components/Modals'
 export default {
     components: {
         Breadcrumb,
         ListBanner,
-        ModalAdd
+        Modals
     },
     methods: {
         showModalAdd() {
-            this.$root.$refs.ModalAdd.showModal();
+            this.$root.$refs.Modals.showModal();
         }
     },
 };

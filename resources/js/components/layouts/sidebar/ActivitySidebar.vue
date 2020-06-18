@@ -24,7 +24,7 @@
                             href="javascript:void(0);"
                             class="user-name"
                             data-toggle="dropdown"
-                            ><strong>Louis Pierce</strong></a
+                            ><strong>Admin</strong></a
                         >
                     </div>
                 </div>

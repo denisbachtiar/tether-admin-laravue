@@ -15,12 +15,14 @@
     "/login-component.js.map": "/login-component.js.map",
     "/users-component.js": "/users-component.js",
     "/users-component.js.map": "/users-component.js.map",
+    "/vendors~activity-banners-component.js": "/vendors~activity-banners-component.js",
+    "/vendors~activity-banners-component.js.map": "/vendors~activity-banners-component.js.map",
     "/vendors~activity-banners-component~activity-dashboard-component.js": "/vendors~activity-banners-component~activity-dashboard-component.js",
     "/vendors~activity-banners-component~activity-dashboard-component.js.map": "/vendors~activity-banners-component~activity-dashboard-component.js.map",
     "/vendors~activity-dashboard-component~dashboard-component~users-component.js": "/vendors~activity-dashboard-component~dashboard-component~users-component.js",
     "/vendors~activity-dashboard-component~dashboard-component~users-component.js.map": "/vendors~activity-dashboard-component~dashboard-component~users-component.js.map",
     "/vendors~activity-data-component~users-component.js": "/vendors~activity-data-component~users-component.js",
     "/vendors~activity-data-component~users-component.js.map": "/vendors~activity-data-component~users-component.js.map",
-    "/vendors~activity-banners-component.js": "/vendors~activity-banners-component.js",
-    "/vendors~activity-banners-component.js.map": "/vendors~activity-banners-component.js.map"
+    "/vendors~activity-dashboard-component.js": "/vendors~activity-dashboard-component.js",
+    "/vendors~activity-dashboard-component.js.map": "/vendors~activity-dashboard-component.js.map"
 }

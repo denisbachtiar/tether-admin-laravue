@@ -5,7 +5,6 @@
  */
 import Vue from "vue";
 import VueRouter from "vue-router"
-import DataTable from "laravel-vue-datatable"
 import { routes } from "./routes"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -20,7 +19,6 @@ require("./bootstrap");
 
 window.Vue = require("vue")
 Vue.use(VueRouter)
-Vue.use(DataTable)
 Vue.use(require('vue-moment'))
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
