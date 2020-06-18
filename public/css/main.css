@@ -13175,5 +13175,32 @@ ul.gallery li a {
   padding-left: 0;
 }
 
+.table {
+  color: #505050;
+  font-weight: 300;
+}
+
+.table p small {
+  color: #8e8e8e;
+}
+
+.light_version .table.table-custom tbody tr {
+  cursor: pointer;
+}
+
+.light_version .table.table-custom tbody tr:hover {
+  background-color: whitesmoke;
+}
+
+.pagination {
+  justify-content: flex-end;
+}
+
+.custom-select {
+  width: 65%;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
 
 /*# sourceMappingURL=main.css.map*/

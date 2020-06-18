@@ -7,22 +7,18 @@
                     <div class="col-md-6 col-sm-12 text-right hidden-xs"></div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body datatable">
-                    <DataTable></DataTable>
-                </div>
-            </div>
+            <Table></Table>
         </div>
     </div>
 </template>
 
 <script>
 import Breadcrumb from '../../../components/layouts/Breadcrumbs'
-import DataTable from './components/DataTable'
+import Table from './components/Table'
 export default {
     components: {
         Breadcrumb,
-        DataTable
+        Table
     }
 };
 </script>

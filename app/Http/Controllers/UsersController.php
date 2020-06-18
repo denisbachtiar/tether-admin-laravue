@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 use DB;
 
 class UsersController extends Controller
@@ -20,19 +19,12 @@ class UsersController extends Controller
 
     public function show(Request $request)
     {   
-        $searchValue = $request->input('search');
-        $orderBy = $request->input('column');
-        $orderBydir = $request->input("dir");
-        $length = $request->input('length');
-
         $data = DB::table('users')
-            ->select('users.*')
-            ->where("users", "LIKE", "%$searchValue%")
-            // ->orWhere('email', "LIKE", "%$searchValue%")
-            ->orderBy($orderBy, $orderBydir)
-            ->paginate($length);
-            // ->get();
-        return new DataTableCollectionResource($data);
+        ->select('users.*')
+        ->where("users.fullname", "LIKE", "%$request->search%")
+        ->orderBy('users.createdAt')
+        ->paginate(10);
+        return response()->json($data);
     }
 
     /**

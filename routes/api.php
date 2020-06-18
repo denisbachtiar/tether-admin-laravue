@@ -37,7 +37,7 @@ Route::get('/user/monthlygraphage', 'UserStatController@monthlyGraphAge');
 Route::get('/user/agegraphpie', 'UserStatController@graphAgePie');
 
 // USER DATA
-Route::get('/user/datauser', 'UsersController@show')->name('usersdata');
+Route::post('/user/datauser', 'UsersController@show');
 
 // ACTIVITY STAT
 Route::get('/activity/boxstatcount', 'ActivityStatController@boxStat');
@@ -53,4 +53,3 @@ Route::post('/activity/banners/addnew', 'ActivityDataController@addNewBanner');
 Route::post('/activity/banners/editbanner', 'ActivityDataController@editBanner');
 Route::post('/activity/banners/delete/{id}', 'ActivityDataController@destroyBanner');
 
-Route::get('/tes', 'ActivityDataController@index');

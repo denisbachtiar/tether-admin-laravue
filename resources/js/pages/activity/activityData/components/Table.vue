@@ -70,7 +70,7 @@ export default {
                 {key: 'slot', label: 'Slot'},
                 {key: 'date', label: 'Date'},
                 {key: 'details', label: 'Details'}
-                ],
+            ],
             tableData: {},
             items: [],
             isLoading: true,
@@ -160,27 +160,6 @@ export default {
     }
 </script>
 <style lang="scss">
-    .table {
-        color: #505050;
-        font-weight: 300;
-    }
-    .light_version .table.table-custom tbody tr {
-        cursor: pointer;
-        &:hover {
-            background-color: whitesmoke;
-        }
-    }
-    .pagination {
-        justify-content: flex-end;
-    }
-    .custom-select {
-        width: 65%;
-        font-size: .8rem;
-        font-weight: 300;
-    }
-    p {
-        small{
-            color: #8e8e8e;
-        }
-    }
+    
+    
 </style>
