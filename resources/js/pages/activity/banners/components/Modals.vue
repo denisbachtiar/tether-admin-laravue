@@ -5,7 +5,7 @@
         allow-multiple="false" 
         max-files="1" 
         ref="pond"
-        :files="myFile"
+        :files="existFile"
         instant-upload="false"
         v-on:updatefiles="handleFilePondUpdateFile"
         v-on:init="handleFilePondInit"/>
@@ -62,7 +62,8 @@ export default {
     data() {
         return {
             idBanner: null,
-            myFile: ['/images/1592470425.png'],
+            existFile: null,
+            myFile: null,
             form: {
                 title: null,
                 desc: null,
@@ -92,12 +93,11 @@ export default {
     },
     methods: {
         handleFilePondUpdateFile(files) {
-            // this.myFile = files[0].file
-            console.log(files[0].file)
+            this.myFile = files[0].file
+            console.log(this.myFile)
         },
         handleFilePondInit: function() {
                 console.log('FilePond has initialized');
-
                 // example of instance method call on pond reference
                 this.$refs.pond.getFiles();
             },
@@ -107,6 +107,7 @@ export default {
         hideModal() {
             this.$refs['my-modal'].hide()
             this.idBanner = null
+            this.existFile = null
             this.form.title = null
             this.form.desc = null
         },
@@ -115,6 +116,7 @@ export default {
             return $dirty ? !$error : null;
         },
         postNewBanner() {
+            const config = { headers: { 'content-type': 'multipart/form-data' }}
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {
                 return;
@@ -122,15 +124,16 @@ export default {
             else {
                 if (this.idBanner != null){
                     this.saveLoading = !this.loading
+                    let data = new FormData()
+                    data.append('id', this.idBanner)
+                    data.append('title', this.form.title)
+                    data.append('description', this.form.desc)
+                    data.append('image', this.myFile)
                     axios
-                    .post('/api/activity/banners/editbanner', {
-                        id: this.idBanner,
-                        title: this.form.title,
-                        description: this.form.desc
-                    })
+                    .post('/api/activity/banners/editbanner', data, config)
                     .then(response => {
                         this.hideModal()
-                        // console.log(response)
+                        console.log(response)
                         this.saveLoading = false
                         const ListBannerComp = this.$root.$refs.ListBanner
                         ListBannerComp.getResults(ListBannerComp.listData.current_page);
@@ -142,9 +145,6 @@ export default {
                     data.append('title', this.form.title)
                     data.append('description', this.form.desc)
                     data.append('image', this.myFile)
-                    const config = {
-                        headers: { 'content-type': 'multipart/form-data' }
-                    }
                     axios
                     .post('/api/activity/banners/addnew',data, config)
                     .then(response => {

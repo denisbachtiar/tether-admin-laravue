@@ -167,6 +167,7 @@ __webpack_require__.r(__webpack_exports__);
       var refModal = this.$root.$refs.Modals;
       refModal.idBanner = data.banner_id;
       refModal.form.title = data.name;
+      refModal.existFile = data.link;
       refModal.form.desc = data.description;
       refModal.showModal();
     },
@@ -281,7 +282,8 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()(filepond_plug
   data: function data() {
     return {
       idBanner: null,
-      myFile: ['/images/1592470425.png'],
+      existFile: null,
+      myFile: null,
       form: {
         title: null,
         desc: null,
@@ -311,8 +313,8 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()(filepond_plug
   },
   methods: {
     handleFilePondUpdateFile: function handleFilePondUpdateFile(files) {
-      // this.myFile = files[0].file
-      console.log(files[0].file);
+      this.myFile = files[0].file;
+      console.log(this.myFile);
     },
     handleFilePondInit: function handleFilePondInit() {
       console.log('FilePond has initialized'); // example of instance method call on pond reference
@@ -325,6 +327,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()(filepond_plug
     hideModal: function hideModal() {
       this.$refs['my-modal'].hide();
       this.idBanner = null;
+      this.existFile = null;
       this.form.title = null;
       this.form.desc = null;
     },
@@ -337,6 +340,11 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()(filepond_plug
     postNewBanner: function postNewBanner() {
       var _this = this;
 
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
       this.$v.form.$touch();
 
       if (this.$v.form.$anyError) {
@@ -344,30 +352,31 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()(filepond_plug
       } else {
         if (this.idBanner != null) {
           this.saveLoading = !this.loading;
-          axios.post('/api/activity/banners/editbanner', {
-            id: this.idBanner,
-            title: this.form.title,
-            description: this.form.desc
-          }).then(function (response) {
-            _this.hideModal(); // console.log(response)
+          var data = new FormData();
+          data.append('id', this.idBanner);
+          data.append('title', this.form.title);
+          data.append('description', this.form.desc);
+          data.append('image', this.myFile);
+          axios.post('/api/activity/banners/editbanner', data, config).then(function (response) {
+            _this.hideModal();
 
-
+            console.log(response);
             _this.saveLoading = false;
             var ListBannerComp = _this.$root.$refs.ListBanner;
             ListBannerComp.getResults(ListBannerComp.listData.current_page);
           });
         } else {
           this.saveLoading = !this.loading;
-          var data = new FormData();
-          data.append('title', this.form.title);
-          data.append('description', this.form.desc);
-          data.append('image', this.myFile);
-          var config = {
-            headers: {
-              'content-type': 'multipart/form-data'
-            }
-          };
-          axios.post('/api/activity/banners/addnew', data, config).then(function (response) {
+
+          var _data = new FormData();
+
+          _data.append('title', this.form.title);
+
+          _data.append('description', this.form.desc);
+
+          _data.append('image', this.myFile);
+
+          axios.post('/api/activity/banners/addnew', _data, config).then(function (response) {
             // console.log(response)
             _this.saveLoading = false;
 
@@ -721,7 +730,7 @@ var render = function() {
             attrs: {
               "allow-multiple": "false",
               "max-files": "1",
-              files: _vm.myFile,
+              files: _vm.existFile,
               "instant-upload": "false"
             },
             on: {

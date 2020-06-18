@@ -15,7 +15,8 @@ class ActivityDataController extends Controller
      */
     public function index()
     {
-        //
+        $imageNameDB = DB::table('banners')->where('banner_id', 17)->select('link')->get()[0]->link;
+        return response()->json($imageNameDB);
     }
 
     /**
@@ -89,13 +90,30 @@ class ActivityDataController extends Controller
 
     public function editBanner(Request $request)
     {
-        $data = DB::table('banners')->where('banner_id', $request->id)->update(
-            [
-                'name' => $request->title, 
-                'description' => $request->description
-            ],
-        );
-        return response()->json($data);
+        $imageNameDB = DB::table('banners')->where('banner_id', $request->id)->select('link')->get()[0]->link;
+        $imgName = substr($imageNameDB, strrpos($imageNameDB, '/') + 1);
+        $imgNameFile = $request->image->getClientOriginalName().'.'.$request->image->getClientOriginalExtension();
+        if ($imgNameFile == 'blob.') {
+            $data = DB::table('banners')->where('banner_id', $request->id)->update(
+                [
+                    'name' => $request->title, 
+                    'description' => $request->description
+                ],
+            );
+        }
+        else {
+            $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $imageName);
+            unlink(public_path()."/images/".$imgName);
+            $data = DB::table('banners')->where('banner_id', $request->id)->update(
+                [
+                    'name' => $request->title, 
+                    'link' => url('images/'.$imageName),
+                    'description' => $request->description
+                ],
+            );
+        }
+        return response()->json($imgNameFile);
     }
 
     public function destroyBanner($id, Request $request) {

@@ -61,6 +61,7 @@ export default {
             const refModal = this.$root.$refs.Modals
             refModal.idBanner = data.banner_id
             refModal.form.title = data.name
+            refModal.existFile = data.link
             refModal.form.desc = data.description
             refModal.showModal()
         },
