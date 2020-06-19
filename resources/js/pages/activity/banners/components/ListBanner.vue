@@ -76,6 +76,7 @@ export default {
                 })
                 .then((willDelete) => {
                     if (willDelete) {
+                        this.isLoading = true
                         axios
                         .post(`/api/activity/banners/delete/${id}`, {
                             image: linx[linx.length - 1]

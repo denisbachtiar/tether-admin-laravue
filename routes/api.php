@@ -38,6 +38,7 @@ Route::get('/user/agegraphpie', 'UserStatController@graphAgePie');
 
 // USER DATA
 Route::post('/user/datauser', 'UsersController@show');
+Route::post('/user/updatestatus', 'UsersController@updateStatus');
 
 // ACTIVITY STAT
 Route::get('/activity/boxstatcount', 'ActivityStatController@boxStat');

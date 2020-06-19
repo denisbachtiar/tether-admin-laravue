@@ -27,6 +27,12 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
+    public function updateStatus(Request $request)
+    {
+        DB::table('users')->where('user_id', $request->id)->update(['status_banned' => $request->value]);
+        return response()->json(['success' => true]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

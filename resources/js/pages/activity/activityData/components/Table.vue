@@ -133,6 +133,7 @@ export default {
                 })
                 .then((willDelete) => {
                     if (willDelete) {
+                        this.isLoading = true
                         axios
                         .post(`/api/activity/updatestatus`,{
                             id: id,

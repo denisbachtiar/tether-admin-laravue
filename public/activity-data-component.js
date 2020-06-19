@@ -251,6 +251,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
+          _this2.isLoading = true;
           axios.post("/api/activity/updatestatus", {
             id: id,
             value: event

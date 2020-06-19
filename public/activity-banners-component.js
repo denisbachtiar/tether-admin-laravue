@@ -183,6 +183,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
+          _this2.isLoading = true;
           axios.post("/api/activity/banners/delete/".concat(id), {
             image: linx[linx.length - 1]
           }).then(function (response) {
